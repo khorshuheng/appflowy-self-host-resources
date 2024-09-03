@@ -1,0 +1,14 @@
+- name: AppFlowy Cloud Prerequisite
+  hosts: appflowy
+  vars_files:
+    - var/input.yaml
+  become: true
+  roles:
+    - geerlingguy.docker
+  tasks:
+    - name: Install http service prerequisites
+      ansible.builtin.apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl

@@ -1,0 +1,43 @@
+- name: AppFlowy Cloud Docker Compose
+  hosts: appflowy
+  vars_files:
+    - var/input.yaml
+  become: true
+  tasks:
+    - name: Create AppFlowy Docker Compose Directory
+      ansible.builtin.file:
+        path: /opt/appflowy-cloud
+        state: directory
+        owner: appflowy
+    - name: Create directory for gotrue schema migration
+      ansible.builtin.file:
+        path: /opt/appflowy-cloud/migration
+        state: directory
+    - name: Copy migration script
+      ansible.builtin.copy:
+        src: migration/supabase.sql
+        dest: /opt/appflowy-cloud/migration/supabase.sql
+    - name: GoTrue Env
+      ansible.builtin.template:
+        src: template/gotrue.env.j2
+        dest: /opt/appflowy-cloud/gotrue.env
+    - name: Minio Env
+      ansible.builtin.template:
+        src: template/minio.env.j2
+        dest: /opt/appflowy-cloud/minio.env
+    - name: Postgres Env
+      ansible.builtin.template:
+        src: template/postgres.env.j2
+        dest: /opt/appflowy-cloud/postgres.env
+    - name: AppFlowy Cloud Env
+      ansible.builtin.template:
+        src: template/appflowy_cloud.env.j2
+        dest: /opt/appflowy-cloud/appflowy_cloud.env
+    - name: Docker Compose
+      ansible.builtin.template:
+        src: template/docker-compose.yaml.j2
+        dest: /opt/appflowy-cloud/docker-compose.yaml
+    - name: Start services
+      ansible.builtin.command:
+        chdir: /opt/appflowy-cloud
+        cmd: docker compose -f /opt/appflowy-cloud/docker-compose.yaml up -d

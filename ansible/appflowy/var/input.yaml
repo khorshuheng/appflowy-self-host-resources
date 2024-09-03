@@ -1,0 +1,22 @@
+scheme: "http"
+fqdn: ${APPFLOWY_FQDN}
+appflowy:
+  image:
+    tag: "latest"
+gotrue:
+  image:
+    tag: "latest"
+  admin:
+    email: "admin@example.com"
+    password: "password"
+  jwt:
+    secret: hello456
+    exp: 7200
+minio:
+  user: "minioadmin"
+  password: "minioadmin"
+oauth:
+  google:
+    enabled: true
+    client_id: ${GOOGLE_OAUTH_CLIENT_ID}
+    client_secret: ${GOOGLE_OAUTH_CLIENT_SECRET}

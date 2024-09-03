@@ -1,0 +1,17 @@
+- name: AppFlowy Cloud Proxy
+  hosts: appflowy
+  vars_files:
+    - var/input.yaml
+  become: true
+  tasks:
+    - name: Install Nginx
+      ansible.builtin.apt:
+        pkg:
+          - nginx
+    - name: Nginx configuration
+      ansible.builtin.template:
+        src: template/nginx.conf.j2
+        dest: /etc/nginx/conf.d/{{ fqdn }}.conf
+    - name: Reload Nginx
+      ansible.builtin.command:
+        cmd: nginx -s reload
