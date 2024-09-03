@@ -13,7 +13,7 @@ resource "google_compute_instance" "appflowy-cloud" {
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-os-cloud/ubuntu-2404-lts-amd64"
+      image = var.os_image
       size  = var.disk_size
       type  = var.disk_type
     }
@@ -27,6 +27,10 @@ resource "google_compute_instance" "appflowy-cloud" {
       network_tier = var.network_tier
       nat_ip       = google_compute_address.appflowy-cloud.address
     }
+  }
+
+  metadata = {
+    "ssh-keys" = "${var.ssh_user}:${file(var.ssh_public_key_path)}"
   }
 
   tags = var.tags

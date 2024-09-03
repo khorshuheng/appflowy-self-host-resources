@@ -58,3 +58,20 @@ variable "network_tier" {
   description = "Network tier for the google compute instance"
   default     = "STANDARD"
 }
+
+variable "os_image" {
+  type        = string
+  description = "Operating system image for the google compute instance"
+  default     = "ubuntu-os-cloud/ubuntu-2404-lts-amd64"
+}
+
+variable "ssh_user" {
+  type        = string
+  description = "SSH user for the google compute instance"
+  default     = "appflowy"
+}
+
+variable "ssh_public_key_path" {
+  type        = string
+  description = "Path to the ssh public key. Used by ansible to provision the VM"
+}
