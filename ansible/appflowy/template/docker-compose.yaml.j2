@@ -6,6 +6,8 @@ services:
     env_file:
       - minio.env
     command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
 
   postgres:
     restart: on-failure
@@ -14,6 +16,7 @@ services:
       - postgres.env
     volumes:
       - ./migration:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data
 
   redis:
     restart: on-failure
@@ -41,3 +44,7 @@ services:
       - appflowy_cloud.env
     ports:
       - 127.0.0.1:8000:8000
+
+volumes:
+  postgres_data:
+  minio_data:
