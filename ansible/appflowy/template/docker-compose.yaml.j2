@@ -32,6 +32,14 @@ services:
     ports:
       - 127.0.0.1:9999:9999
 
+  admin_frontend:
+    restart: on-failure
+    image: appflowyinc/admin_frontend:{{ admin_frontend.image.tag }}
+    env_file:
+      - admin_frontend.env
+    ports:
+      - 127.0.0.1:3000:3000
+
   appflowy_cloud:
     restart: on-failure
     image: appflowyinc/appflowy_cloud:latest

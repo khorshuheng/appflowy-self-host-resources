@@ -33,6 +33,10 @@
       ansible.builtin.template:
         src: template/appflowy_cloud.env.j2
         dest: /opt/appflowy-cloud/appflowy_cloud.env
+    - name: AppFlowy Admin Frontend Env
+      ansible.builtin.template:
+        src: template/admin_frontend.env.j2
+        dest: /opt/appflowy-cloud/admin_frontend.env
     - name: Docker Compose
       ansible.builtin.template:
         src: template/docker-compose.yaml.j2
