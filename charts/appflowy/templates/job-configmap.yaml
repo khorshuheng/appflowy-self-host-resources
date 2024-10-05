@@ -1,0 +1,13 @@
+{{- if .Values.setupJob.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "appflowy.job.fullname" . }}
+  labels:
+    {{- include "appflowy.labels" . | nindent 4 }}
+data:
+  setup_appflowy_db.sql: |
+    {{- include "setup_appflowy_db.sql" . | indent 4 }}
+  setup.sh: |
+    {{- include "setup.sh" . | indent 4 }}
+{{- end }}

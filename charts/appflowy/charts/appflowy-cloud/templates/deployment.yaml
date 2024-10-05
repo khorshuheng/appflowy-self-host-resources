@@ -1,0 +1,118 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "appflowy-cloud.fullname" . }}
+  labels:
+    {{- include "appflowy-cloud.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "appflowy-cloud.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "appflowy-cloud.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "appflowy-cloud.serviceAccountName" . }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          env:
+            - name: LOG_LEVEL
+              value: {{ .Values.logLevel }}
+            - name: APPFLOWY_ENVIRONMENT
+              value: production
+            - name: APPFLOWY_DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.global.secret.name }}
+                  key: {{ .Values.global.secret.appflowyDatabaseUrlKey }}
+            - name: APPFLOWY_REDIS_URI
+              value: {{ .Values.redis.uri }}
+            - name: APPFLOWY_GOTRUE_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.global.secret.name }}
+                  key: {{ .Values.global.secret.jwtSecretKey }}
+            - name: APPFLOWY_GOTRUE_BASE_URL
+              value: {{ .Values.gotrue.baseUrl }}
+            - name: APPFLOWY_GOTRUE_ADMIN_EMAIL
+              value: {{ .Values.gotrue.adminEmail }}
+            - name: APPFLOWY_GOTRUE_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.global.secret.name }}
+                  key: {{ .Values.global.secret.gotrueAdminPasswordKey }}
+            - name: APPFLOWY_S3_CREATE_BUCKET
+              value: {{ .Values.s3.createBucket | quote }}
+            - name: APPFLOWY_S3_USE_MINIO
+              value: {{ .Values.s3.useMinio | quote }}
+            - name: APPFLOWY_S3_MINIO_URL
+              value: {{ .Values.s3.minioUrl }}
+            {{- if .Values.s3.accessKey }}
+            - name: APPFLOWY_S3_ACCESS_KEY
+              value: {{ .Values.s3.accessKey }}
+            - name: APPFLOWY_S3_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.global.secret.name }}
+                  key: {{ .Values.global.secret.s3SecretKey }}
+            {{- end }}
+            - name: APPFLOWY_S3_BUCKET
+              value: {{ .Values.s3.bucket }}
+            - name: APPFLOWY_S3_REGION
+              value: {{ .Values.s3.region }}
+            - name: APPFLOWY_MALIER_SMTP_HOST
+              value: {{ .Values.global.smtp.host }}
+            - name: APPFLOWY_MALIER_SMTP_PORT
+              value: {{ .Values.global.smtp.port | quote }}
+            - name: APPFLOWY_MALIER_SMTP_USERNAME
+              value: {{ .Values.global.smtp.user }}
+            - name: APPFLOWY_MALIER_SMTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.global.secret.name }}
+                  key: {{ .Values.global.secret.smtpPasswordKey }}
+            - name: APPFLOWY_ACCESS_CONTROL
+              value: {{ .Values.accessControl.enabled | quote }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with .Values.volumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

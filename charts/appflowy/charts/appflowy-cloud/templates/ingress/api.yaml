@@ -1,0 +1,25 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "appflowy-cloud.fullname" . }}-api
+  annotations:
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: {{ .Values.ingress.api.cors.allowOrigin | quote }}
+    nginx.ingress.kubernetes.io/cors-allow-headers: "Content-Type, Authorization, Accept, Client-Version"
+    nginx.ingress.kubernetes.io/cors-max-age: {{ .Values.ingress.api.cors.maxAge | quote }}
+    {{- .Values.ingress.api.annotations | toYaml | nindent 4 }}
+spec:
+  ingressClassName: {{ .Values.ingress.className }}
+  rules:
+    - host: {{ .Values.global.domain }}
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "appflowy-cloud.fullname" . }}
+                port:
+                  number: {{ .Values.service.port }}
+{{- end }}

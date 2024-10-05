@@ -1,0 +1,18 @@
+dependencies:
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 20.0.3
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 15.5.24
+- name: minio
+  repository: https://charts.bitnami.com/bitnami
+  version: 14.7.14
+- name: appflowy-cloud
+  repository: ""
+  version: 0.1.0
+- name: appflowy-gotrue
+  repository: ""
+  version: 0.1.0
+digest: sha256:64d6ac29cde70747d6c311e12b1d296f9bc6f71fe0eff4845d4134e71b85d86d
+generated: "2024-10-02T17:40:30.917836031+08:00"

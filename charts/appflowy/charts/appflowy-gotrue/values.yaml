@@ -1,0 +1,98 @@
+# Default values for appflowy-gotrue.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  fqdn: "http://appflowy.mydomain.com"
+  scheme: "http"
+  domain: "appflowy.mydomain.com"
+  secret:
+    name: appflowy
+    gotrueDatabaseUrlKey: gotrueDatabaseUrl
+    jwtSecretKey: jwtSecret
+    oauthGoogleClientSecretKey: oauthGoogleClientSecret
+    oauthDiscordClientSecretKey: oauthDiscordClientSecret
+    oauthGithubClientSecretKey: oauthGithubClientSecret
+    oauthAppleClientSecretKey: oauthAppleClientSecret
+
+replicaCount: 1
+
+image:
+  repository: appflowyinc/gotrue
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+podLabels: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+jwt:
+  expiry: 3600
+
+mailer:
+  enabled: false
+  adminEmail: "admin@example.com"
+  autoconfirm: false
+
+oauth:
+  google:
+    enabled: false
+    clientId: ""
+  discord:
+    enabled: false
+    clientId: ""
+  github:
+    enabled: false
+    clientId: ""
+  apple:
+    enabled: false
+    clientId: ""
+
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  className: nginx
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: http
+
+# Additional volumes on the output Deployment definition.
+volumes: []
+# - name: foo
+#   secret:
+#     secretName: mysecret
+#     optional: false
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts: []
+# - name: foo
+#   mountPath: "/etc/foo"
+#   readOnly: true
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+extraEnv: []

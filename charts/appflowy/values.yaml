@@ -1,0 +1,115 @@
+global:
+  fqdn: "http://appflowy.mydomain.com"
+  database:
+    host: appflowy-postgres
+    name: appflowy
+    port: 5432
+    username: appflowy
+    adminUsername: postgres
+  smtp:
+    host: ""
+    port: 587
+    user: user
+  secret:
+    name: appflowy
+    postgresAdminPasswordKey: postgresAdminPassword
+    postgresPasswordKey: postgresPassword
+    gotruePostgresPasswordKey: gotruePostgresPassword
+    gotrueDatabaseUrlKey: gotrueDatabaseUrl
+    appflowyDatabaseUrlKey: appflowyDatabaseUrl
+    jwtSecretKey: jwtSecret
+    oauthGoogleClientSecretKey: oauthGoogleClientSecret
+    oauthDiscordClientSecretKey: oauthDiscordClientSecret
+    oauthGithubClientSecretKey: oauthGithubClientSecret
+    oauthAppleClientSecretKey: oauthAppleClientSecret
+    smtpPasswordKey: smtpPassword
+    gotrueAdminPasswordKey: gotrueAdminPassword
+    s3SecretKey: s3Secret
+    create: true
+    data:
+      postgresAdminPassword: password
+      postgresPassword: password
+      gotruePostgresPassword: password
+      jwtSecret: hello456
+      oauthGoogleClientSecret: ""
+      oauthDiscordClientSecret: ""
+      oauthGithubClientSecret: ""
+      oauthAppleClientSecret: ""
+      smtpPassword: password
+      gotrueAdminPassword: password
+      s3Secret: ""
+
+nameOverride: ""
+fullnameOverride: appflowy
+
+postgresql:
+  enabled: true
+  fullnameOverride: appflowy-postgres
+  image:
+    repository: zmegalodon/appflowy-postgres
+    tag: 0.1.0
+  auth:
+    username: appflowy
+    database: appflowy
+    password: password
+    postgresPassword: password
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi
+
+appflowy-gotrue:
+  enabled: true
+  fullnameOverride: appflowy-gotrue
+  extraEnv: []
+
+appflowy-cloud:
+  enabled: true
+  fullnameOverride: appflowy-cloud
+  redis:
+    uri: "redis://appflowy-redis-headless:6379"
+  gotrue:
+    baseUrl: "http://appflowy-gotrue"
+    adminEmail: "admin@example.com"
+  s3:
+    createBucket: "true"
+    useMinio: "true"
+    minioUrl: "http://appflowy-minio:9000"
+    accessKey: ""
+  accessControl:
+    enabled: true
+  ingress:
+    enabled: true
+
+redis:
+  enabled: true
+  auth:
+    enabled: false
+  architecture: standalone
+  fullnameOverride: appflowy-redis
+  master:
+    persistence:
+      enabled: false
+
+minio:
+  enabled: true
+  auth:
+    rootPassword: password
+    rootUser: minioadmin
+  persistence:
+    size: 1Gi
+  resources:
+    limits:
+      memory: 256Mi
+    requests:
+      cpu: 10m
+      memory: 256Mi
+
+setupJob:
+  enabled: true
+  postgresConnectTimeout: 60
+  backoffLimit: 5
+  resources: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}

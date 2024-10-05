@@ -1,0 +1,24 @@
+apiVersion: v2
+name: appflowy
+description: AppFlowy Web Services
+type: application
+version: 0.1.0
+dependencies:
+  - name: redis
+    condition: redis.enabled
+    version: 20.0.3
+    repository: https://charts.bitnami.com/bitnami
+  - name: postgresql
+    condition: postgresql.enabled
+    version: 15.5.24
+    repository: https://charts.bitnami.com/bitnami
+  - name: minio
+    condition: minio.enabled
+    version: 14.7.14
+    repository: https://charts.bitnami.com/bitnami
+  - name: appflowy-cloud
+    condition: appflowy-cloud.enabled
+    version: 0.1.0
+  - name: appflowy-gotrue
+    condition: appflowy-gotrue.enabled
+    version: 0.1.0
