@@ -23,28 +23,28 @@ spec:
                 secretKeyRef:
                   name:
                     {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.postgresAdminPasswordKey }}
+                  key: {{ .Values.global.secret.postgres.adminPassword.key }}
             - name: SUPABASE_AUTH_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.gotruePostgresPasswordKey }}
+                  key: {{ .Values.global.secret.postgres.gotrue.postgresPassword.key }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.setupJob.resources | nindent 12 }}
       restartPolicy: Never
       volumes:
         - name: setup-scripts
           configMap:
             name: {{ include "appflowy.job.fullname" . }}
-      {{- with .Values.nodeSelector }}
+      {{- with .Values.setupJob.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.affinity }}
+      {{- with .Values.setupJob.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.tolerations }}
+      {{- with .Values.setupJob.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}

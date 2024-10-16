@@ -55,9 +55,9 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{- define "appflowy.gotrueDatabase.url" -}}
-{{- printf "postgres://supabase_auth_admin:%s@%s:%d/%s"  .Values.global.secret.data.gotruePostgresPassword .Values.global.database.host (.Values.global.database.port | int) .Values.global.database.name }}
+{{- printf "postgres://supabase_auth_admin:%s@%s:%d/%s"  .Values.global.secret.postgres.gotrue.postgresPassword.value .Values.global.database.host (.Values.global.database.port | int) .Values.global.database.name }}
 {{- end }}
 
 {{- define "appflowy.appflowyDatabase.url" -}}
-{{- printf "postgres://%s:%s@%s:%d/%s"  .Values.global.database.username .Values.global.secret.data.postgresPassword .Values.global.database.host (.Values.global.database.port | int) .Values.global.database.name }}
+{{- printf "postgres://%s:%s@%s:%d/%s"  .Values.global.database.username .Values.global.secret.postgres.appflowy.postgresPassword.value .Values.global.database.host (.Values.global.database.port | int) .Values.global.database.name }}
 {{- end }}

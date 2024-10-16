@@ -45,14 +45,14 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.appflowyDatabaseUrlKey }}
+                  key: {{ .Values.global.secret.postgres.appflowy.databaseUrl.key }}
             - name: APPFLOWY_REDIS_URI
               value: {{ .Values.redis.uri }}
             - name: APPFLOWY_GOTRUE_JWT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.jwtSecretKey }}
+                  key: {{ .Values.global.secret.jwt.secret.key }}
             - name: APPFLOWY_GOTRUE_BASE_URL
               value: {{ .Values.gotrue.baseUrl }}
             - name: APPFLOWY_GOTRUE_ADMIN_EMAIL
@@ -61,7 +61,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.gotrueAdminPasswordKey }}
+                  key: {{ .Values.global.secret.gotrue.adminPassword.key }}
             - name: APPFLOWY_S3_CREATE_BUCKET
               value: {{ .Values.s3.createBucket | quote }}
             - name: APPFLOWY_S3_USE_MINIO
@@ -75,23 +75,23 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.s3SecretKey }}
+                  key: {{ .Values.global.secret.s3.secret.key }}
             {{- end }}
             - name: APPFLOWY_S3_BUCKET
               value: {{ .Values.s3.bucket }}
             - name: APPFLOWY_S3_REGION
               value: {{ .Values.s3.region }}
-            - name: APPFLOWY_MALIER_SMTP_HOST
+            - name: APPFLOWY_MAILER_SMTP_HOST
               value: {{ .Values.global.smtp.host }}
-            - name: APPFLOWY_MALIER_SMTP_PORT
+            - name: APPFLOWY_MAILER_SMTP_PORT
               value: {{ .Values.global.smtp.port | quote }}
-            - name: APPFLOWY_MALIER_SMTP_USERNAME
+            - name: APPFLOWY_MAILER_SMTP_USERNAME
               value: {{ .Values.global.smtp.user }}
-            - name: APPFLOWY_MALIER_SMTP_PASSWORD
+            - name: APPFLOWY_MAILER_SMTP_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.smtpPasswordKey }}
+                  key: {{ .Values.global.secret.smtp.password.key }}
             - name: APPFLOWY_ACCESS_CONTROL
               value: {{ .Values.accessControl.enabled | quote }}
           resources:

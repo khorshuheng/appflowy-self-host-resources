@@ -44,7 +44,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.gotrueDatabaseUrlKey }}
+                  key: {{ .Values.global.secret.postgres.gotrue.databaseUrl.key }}
             - name: GOTRUE_SITE_URL
               value: appflowy-flutter://
             - name: GOTRUE_URI_ALLOW_LIST
@@ -53,7 +53,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.jwtSecretKey }}
+                  key: {{ .Values.global.secret.jwt.secret.key }}
             - name: GOTRUE_JWT_EXP
               value: {{ .Values.jwt.expiry | quote }}
             {{- if .Values.oauth.google.enabled }}
@@ -65,7 +65,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.oauthGoogleClientSecretKey }}
+                  key: {{ .Values.global.secret.oauth.googleClientSecret.key }}
             - name: GOTRUE_EXTERNAL_GOOGLE_REDIRECT_URI
               value: {{ include "appflowy-gotrue.callback" . }}
             {{- end }}
@@ -78,7 +78,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.oauthDiscordClientSecretKey }}
+                  key: {{ .Values.global.secret.oauth.discordClientSecret.key }}
             - name: GOTRUE_EXTERNAL_DISCORD_REDIRECT_URI
               value: {{ include "appflowy-gotrue.callback" . }}
             {{- end }}
@@ -91,7 +91,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.oauthGithubClientSecretKey }}
+                  key: {{ .Values.global.secret.oauth.githubClientSecret.key }}
             - name: GOTRUE_EXTERNAL_GITHUB_REDIRECT_URI
               value: {{ include "appflowy-gotrue.callback" . }}
             {{- end }}
@@ -104,7 +104,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.oauthAppleClientSecretKey }}
+                  key: {{ .Values.global.secret.oauth.appleClientSecret.key }}
             - name: GOTRUE_EXTERNAL_APPLE_REDIRECT_URI
               value: {{ include "appflowy-gotrue.callback" . }}
             {{- end }}
@@ -112,18 +112,26 @@ spec:
             - name: GOTRUE_SMTP_HOST
               value: {{ .Values.global.smtp.host }}
             - name: GOTRUE_SMTP_PORT
-              value: {{ .Values.global.smtp.port | quote }}  
+              value: {{ .Values.global.smtp.port | quote }}
             - name: GOTRUE_SMTP_USER
               value: {{ .Values.global.smtp.user }}
             - name: GOTRUE_SMTP_PASS
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.smtpPasswordKey }}
+                  key: {{ .Values.global.secret.smtp.password.key }}
             - name: GOTRUE_SMTP_ADMIN_EMAIL
               value: {{ .Values.mailer.adminEmail }}
             - name: GOTRUE_MAILER_AUTOCONFIRM
               value: {{ .Values.mailer.autoConfirm | quote }}
+            - name: GOTRUE_MAILER_URLPATHS_CONFIRMATION
+              value: /gotrue/verify
+            - name: GOTRUE_MAILER_URLPATHS_INVITE
+              value: /gotrue/verify
+            - name: GOTRUE_MAILER_URLPATHS_RECOVERY
+              value: /gotrue/verify
+            - name: GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE
+              value: /gotrue/verify
             {{- end }}
             {{- with .Values.extraEnv }}
             {{- toYaml . | nindent 12 }}

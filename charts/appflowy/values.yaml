@@ -12,32 +12,52 @@ global:
     user: user
   secret:
     name: appflowy
-    postgresAdminPasswordKey: postgresAdminPassword
-    postgresPasswordKey: postgresPassword
-    gotruePostgresPasswordKey: gotruePostgresPassword
-    gotrueDatabaseUrlKey: gotrueDatabaseUrl
-    appflowyDatabaseUrlKey: appflowyDatabaseUrl
-    jwtSecretKey: jwtSecret
-    oauthGoogleClientSecretKey: oauthGoogleClientSecret
-    oauthDiscordClientSecretKey: oauthDiscordClientSecret
-    oauthGithubClientSecretKey: oauthGithubClientSecret
-    oauthAppleClientSecretKey: oauthAppleClientSecret
-    smtpPasswordKey: smtpPassword
-    gotrueAdminPasswordKey: gotrueAdminPassword
-    s3SecretKey: s3Secret
     create: true
-    data:
-      postgresAdminPassword: password
-      postgresPassword: password
-      gotruePostgresPassword: password
-      jwtSecret: hello456
-      oauthGoogleClientSecret: ""
-      oauthDiscordClientSecret: ""
-      oauthGithubClientSecret: ""
-      oauthAppleClientSecret: ""
-      smtpPassword: password
-      gotrueAdminPassword: password
-      s3Secret: ""
+    postgres:
+      adminPassword:
+        key: postgresAdminPassword
+        value: password
+      gotrue:
+        postgresPassword:
+          key: gotruePostgresPassword
+          value: password
+        databaseUrl:
+          key: gotrueDatabaseUrl
+      appflowy:
+        postgresPassword:
+          key: postgresPassword
+          value: password
+        databaseUrl:
+          key: appflowyDatabaseUrl
+    gotrue:
+      adminPassword:
+        key: gotrueAdminPassword
+        value: password
+    oauth:
+      googleClientSecret:
+        key: oauthGoogleClientSecret
+        value: ""
+      discordClientSecret:
+        key: oauthDiscordClientSecret
+        value: ""
+      githubClientSecret:
+        key: oauthGithubClientSecret
+        value: ""
+      appleClientSecret:
+        key: oauthAppleClientSecret
+        value: ""
+    jwt:
+      secret:
+        key: jwtSecret
+        value: hello456
+    smtp:
+      password:
+        key: smtpPassword
+        value: password
+    s3:
+      secret:
+        key: s3Secret
+        value: "password"
 
 nameOverride: ""
 fullnameOverride: appflowy
@@ -61,6 +81,9 @@ postgresql:
 appflowy-gotrue:
   enabled: true
   fullnameOverride: appflowy-gotrue
+  mailer:
+    enabled: true
+    autoConfirm: false
   extraEnv: []
 
 appflowy-cloud:
@@ -75,7 +98,7 @@ appflowy-cloud:
     createBucket: "true"
     useMinio: "true"
     minioUrl: "http://appflowy-minio:9000"
-    accessKey: ""
+    accessKey: "minioadmin"
   accessControl:
     enabled: true
   ingress:

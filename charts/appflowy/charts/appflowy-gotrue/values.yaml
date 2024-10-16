@@ -8,12 +8,33 @@ global:
   domain: "appflowy.mydomain.com"
   secret:
     name: appflowy
-    gotrueDatabaseUrlKey: gotrueDatabaseUrl
-    jwtSecretKey: jwtSecret
-    oauthGoogleClientSecretKey: oauthGoogleClientSecret
-    oauthDiscordClientSecretKey: oauthDiscordClientSecret
-    oauthGithubClientSecretKey: oauthGithubClientSecret
-    oauthAppleClientSecretKey: oauthAppleClientSecret
+    postgres:
+      gotrue:
+        postgresPassword:
+          key: gotruePostgresPassword
+          value: password
+        databaseUrl:
+          key: gotrueDatabaseUrl
+    oauth:
+      googleClientSecret:
+        key: oauthGoogleClientSecret
+        value: ""
+      discordClientSecret:
+        key: oauthDiscordClientSecret
+        value: ""
+      githubClientSecret:
+        key: oauthGithubClientSecret
+        value: ""
+      appleClientSecret:
+        key: oauthAppleClientSecret
+        value: ""
+    jwt:
+      key: jwtSecret
+      value: hello456
+    smtp:
+      password:
+        key: smtpPassword
+        value: password
 
 replicaCount: 1
 
