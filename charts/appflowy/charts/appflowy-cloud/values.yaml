@@ -1,17 +1,6 @@
 # Default values for appflowy-cloud.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
-
-global:
-  fqdn: "http://appflowy.mydomain.com"
-  domain: "appflowy.mydomain.com"
-  secret:
-    name: appflowy
-    appflowyDatabaseUrlKey: appflowyDatabaseUrl
-    jwtSecretKey: jwtSecret
-    gotrueAdminPasswordKey: gotrueAdminPassword
-
 replicaCount: 1
 
 image:
@@ -23,17 +12,6 @@ image:
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Automatically mount a ServiceAccount's API credentials?
-  automount: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
 
 podAnnotations: {}
 podLabels: {}
@@ -50,37 +28,12 @@ gotrue:
   adminEmail: "admin@example.com"
 s3:
   createBucket: "true"
+  bucket: "appflowy"
   useMinio: "true"
   minioUrl: "http://appflowy-minio:9000"
   accessKey: ""
 accessControl:
   enabled: true
-
-ingress:
-  enabled: true
-  className: nginx
-  ws:
-    proxyReadTimeout: 86400
-    annotations:
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "Upgrade";
-        proxy_set_header Host $host;
-
-  api:
-    cors:
-      allowOrigin: "*"
-      maxAge: "3600"
-    annotations:
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        proxy_set_header X-Request-Id $request_id;
-        proxy_set_header Host $http_host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-
-
-
 
 resources: {}
   # limits:

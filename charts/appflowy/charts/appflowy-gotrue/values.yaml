@@ -1,41 +1,6 @@
 # Default values for appflowy-gotrue.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
-global:
-  fqdn: "http://appflowy.mydomain.com"
-  scheme: "http"
-  domain: "appflowy.mydomain.com"
-  secret:
-    name: appflowy
-    postgres:
-      gotrue:
-        postgresPassword:
-          key: gotruePostgresPassword
-          value: password
-        databaseUrl:
-          key: gotrueDatabaseUrl
-    oauth:
-      googleClientSecret:
-        key: oauthGoogleClientSecret
-        value: ""
-      discordClientSecret:
-        key: oauthDiscordClientSecret
-        value: ""
-      githubClientSecret:
-        key: oauthGithubClientSecret
-        value: ""
-      appleClientSecret:
-        key: oauthAppleClientSecret
-        value: ""
-    jwt:
-      key: jwtSecret
-      value: hello456
-    smtp:
-      password:
-        key: smtpPassword
-        value: password
-
 replicaCount: 1
 
 image:
@@ -76,13 +41,6 @@ oauth:
   apple:
     enabled: false
     clientId: ""
-
-ingress:
-  enabled: true
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-  className: nginx
 
 resources: {}
   # limits:

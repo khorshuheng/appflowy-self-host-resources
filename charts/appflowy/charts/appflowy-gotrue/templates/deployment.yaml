@@ -37,7 +37,7 @@ spec:
             - name: PORT
               value: "9999"
             - name: API_EXTERNAL_URL
-              value: {{ .Values.global.fqdn }}
+              value: {{ printf "%s://%s:%d" .Values.global.scheme .Values.global.external_host (.Values.global.external_port | int) }}
             - name: GOTRUE_DB_DRIVER
               value: postgres
             - name: DATABASE_URL
@@ -61,7 +61,7 @@ spec:
               value: {{ .Values.oauth.google.enabled | quote }}
             - name: GOTRUE_EXTERNAL_GOOGLE_CLIENT_ID
               value: {{ .Values.oauth.google.clientId | required "oauth.google.clientId is required when oauth.google.enabled is true" }}
-            - name: GOTRUE_EXTERNAL_GOOGLE_CLIENT_SECRET
+            - name: GOTRUE_EXTERNAL_GOOGLE_SECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
@@ -74,7 +74,7 @@ spec:
               value: {{ .Values.oauth.discord.enabled | quote }}
             - name: GOTRUE_EXTERNAL_DISCORD_CLIENT_ID
               value: {{ .Values.oauth.discord.clientId | required "oauth.discord.clientId is required when oauth.discord.enabled is true" }}
-            - name: GOTRUE_EXTERNAL_DISCORD_CLIENT_SECRET
+            - name: GOTRUE_EXTERNAL_DISCORD_SECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
@@ -87,7 +87,7 @@ spec:
               value: {{ .Values.oauth.github.enabled | quote }}
             - name: GOTRUE_EXTERNAL_GITHUB_CLIENT_ID
               value: {{ .Values.oauth.github.clientId | required "oauth.github.clientId is required when oauth.github.enabled is true" }}
-            - name: GOTRUE_EXTERNAL_GITHUB_CLIENT_SECRET
+            - name: GOTRUE_EXTERNAL_GITHUB_SECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
@@ -100,7 +100,7 @@ spec:
               value: {{ .Values.oauth.apple.enabled | quote }}
             - name: GOTRUE_EXTERNAL_APPLE_CLIENT_ID
               value: {{ .Values.oauth.apple.clientId | required "oauth.apple.clientId is required when oauth.apple.enabled is true" }}
-            - name: GOTRUE_EXTERNAL_APPLE_CLIENT_SECRET
+            - name: GOTRUE_EXTERNAL_APPLE_SECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}

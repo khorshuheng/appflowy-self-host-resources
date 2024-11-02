@@ -10,7 +10,6 @@ END IF;
 END LOOP;
 END;
 $$;
-SELECT create_roles(ARRAY ['anon', 'authenticated']);
 DO $$ BEGIN IF NOT EXISTS (
     SELECT
     FROM pg_catalog.pg_roles

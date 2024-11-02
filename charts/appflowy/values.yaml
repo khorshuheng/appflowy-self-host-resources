@@ -1,5 +1,19 @@
 global:
-  fqdn: "http://appflowy.mydomain.com"
+  scheme: "http"
+  external_host: "appflowy.mydomain.com"
+  external_port: 80
+  ingress:
+    nginx:
+      enabled: true
+      className: nginx
+    traefik:
+      enabled: false
+      entryPoint: web
+      secureEntryPoint: websecure
+    websocket:
+      timeout: 86400
+    cors:
+      allowOrigins: "*"
   database:
     host: appflowy-postgres
     name: appflowy
@@ -8,7 +22,7 @@ global:
     adminUsername: postgres
   smtp:
     host: ""
-    port: 587
+    port: 465
     user: user
   secret:
     name: appflowy
