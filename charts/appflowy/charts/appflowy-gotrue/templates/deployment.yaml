@@ -108,7 +108,6 @@ spec:
             - name: GOTRUE_EXTERNAL_APPLE_REDIRECT_URI
               value: {{ include "appflowy-gotrue.callback" . }}
             {{- end }}
-            {{- if .Values.mailer.enabled }}
             - name: GOTRUE_SMTP_HOST
               value: {{ .Values.global.smtp.host }}
             - name: GOTRUE_SMTP_PORT
@@ -132,7 +131,6 @@ spec:
               value: /gotrue/verify
             - name: GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE
               value: /gotrue/verify
-            {{- end }}
             {{- with .Values.extraEnv }}
             {{- toYaml . | nindent 12 }}
             {{- end }}

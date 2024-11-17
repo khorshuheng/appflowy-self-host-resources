@@ -24,9 +24,7 @@ jwt:
   expiry: 3600
 
 mailer:
-  enabled: false
   adminEmail: "admin@example.com"
-  autoconfirm: false
 
 oauth:
   google:

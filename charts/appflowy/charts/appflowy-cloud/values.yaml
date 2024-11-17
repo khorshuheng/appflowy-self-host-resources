@@ -20,19 +20,29 @@ service:
   type: ClusterIP
   port: 80
 
+# -- Stdout log level
 logLevel: "info"
 redis:
+  # -- Redis URI
   uri: "redis://appflowy-redis-headless:6379"
 gotrue:
+  # -- GoTrue base URL
   baseUrl: "http://appflowy-gotrue"
+  # -- GoTrue admin user, will be created by AppFlowy Cloud if not exists.
   adminEmail: "admin@example.com"
 s3:
+  # -- Create bucket on startup. If false, bucket must be created manually.
   createBucket: "true"
+  # -- S3 Bucket name
   bucket: "appflowy"
+  # -- Set this to true when using Minio or other S3-compatible services.
   useMinio: "true"
+  # -- Url for the S3-compatible service
   minioUrl: "http://appflowy-minio:9000"
+  # -- S3 access key
   accessKey: ""
 accessControl:
+  # -- Enable access control
   enabled: true
 
 resources: {}

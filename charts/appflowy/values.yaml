@@ -1,79 +1,126 @@
 global:
+  # -- Accepted values: "http" or "https"
   scheme: "http"
+  # -- The host name which can be used for the AppFlowy client to reach the API server
   external_host: "appflowy.mydomain.com"
+  # -- The port number which can be used for the AppFlowy client to reach the API server
   external_port: 80
   ingress:
     nginx:
+      # -- Enable to create ingress for NGINX Ingress Controller
       enabled: true
+      # -- The class name of the NGINX Ingress Controller ingress
       className: nginx
     traefik:
+      # -- Enable to create IngressRoute for Traefik Ingress Controller
       enabled: false
+      # -- The entry point for the Traefik Ingress Controller if the scheme is "http"
       entryPoint: web
+      # -- The entry point for the Traefik Ingress Controller if the scheme is "https"
       secureEntryPoint: websecure
     websocket:
+      # -- Define timeout for websocket connection. Currently only used for the Nginx ingress.
       timeout: 86400
     cors:
+      # -- Configure the domains which are allowed to access the API server eg. domain for AppFlowy Web
       allowOrigins: "*"
+      # -- CORS max age
+      maxAge: "3600"
   database:
+    # -- Database host name
     host: appflowy-postgres
+    # -- Database name
     name: appflowy
+    # -- Database port
     port: 5432
+    # -- Postgres user, to be used by the AppFlowy API server
     username: appflowy
+    # -- Postgres admin user, to be used by the setup job.
     adminUsername: postgres
   smtp:
-    host: ""
+    # -- SMTP host name, required for sending invitation emails and magic links.
+    host: "smtp.gmail.com"
+    # -- SMTP port number. Make sure that TLS is supported. STARTTLS, such as port 587 for gmail and mailgun, is not supported.
     port: 465
-    user: user
+    # -- SMTP user name
+    user: user@gmail.com
   secret:
+    # -- Name of the secret which stores all the sensitive information required for AppFlowy
     name: appflowy
+    # -- Create or update the Kubernetes secret. If set to false, the secret must be created manually, and the name should be adjusted accordingly.
     create: true
     postgres:
       adminPassword:
+        # -- Secret key name for the Postgres admin password
         key: postgresAdminPassword
+        # -- Secret value for the Postgres admin password
         value: password
       gotrue:
         postgresPassword:
+          # -- Secret key name for the password of the gotrue postgres user (supabase_admin_auth)
           key: gotruePostgresPassword
+          # -- Secret value for the password of the gotrue postgres user (supabase_admin_auth)
           value: password
         databaseUrl:
+          # -- Database url, as inferred from the postgres credentials. Takes the form of: postgres://supabase_auth_admin:<password>@<host>:<port>/<database name>
           key: gotrueDatabaseUrl
       appflowy:
         postgresPassword:
+          # -- Secret key name for the password of the appflowy postgres user
           key: postgresPassword
+          # -- Secret value for the password of the appflowy postgres user
           value: password
         databaseUrl:
+          # -- Database url, as inferred from the postgres credentials. Takes the form of: postgres://<appflowy user>:<password>@<host>:<port>/<database name>
           key: appflowyDatabaseUrl
     gotrue:
       adminPassword:
+        # -- Secret key name for the Gotrue admin password
         key: gotrueAdminPassword
+        # -- Secret value for the Gotrue admin password
         value: password
     oauth:
       googleClientSecret:
+        # -- Secret key name for the Google OAuth client secret
         key: oauthGoogleClientSecret
+        # -- Secret value for the Google OAuth client secret
         value: ""
       discordClientSecret:
+        # -- Secret key name for the Discord OAuth client secret
         key: oauthDiscordClientSecret
+        # -- Secret value for the Discord OAuth client secret
         value: ""
       githubClientSecret:
+        # -- Secret key name for the Github OAuth client secret
         key: oauthGithubClientSecret
+        # -- Secret value for the Github OAuth client secret
         value: ""
       appleClientSecret:
+        # -- Secret key name for the Apple OAuth client secret
         key: oauthAppleClientSecret
+        # -- Secret value for the Apple OAuth client secret
         value: ""
     jwt:
       secret:
+        # -- Secret key name for the JWT secret
         key: jwtSecret
+        # -- Secret value for the JWT secret
         value: hello456
     smtp:
       password:
+        # -- Secret key name for the SMTP password
         key: smtpPassword
+        # -- Secret value for the SMTP password. For gmail, make sures to use an app password instead of the regular user password.
         value: password
     s3:
       secret:
+        # -- Secret key name for the S3 secret
         key: s3Secret
+        # -- Secret value for the S3 secret
         value: "password"
 
 nameOverride: ""
+# -- Override the name of the resources created by the chart
 fullnameOverride: appflowy
 
 postgresql:
