@@ -139,6 +139,10 @@ postgresql:
       enabled: true
       size: 1Gi
 
+appflowy-admin:
+  enabled: true
+  fullnameOverride: appflowy-admin
+
 appflowy-gotrue:
   enabled: true
   fullnameOverride: appflowy-gotrue

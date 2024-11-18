@@ -8,6 +8,7 @@ AppFlowy Web Services
 
 | Repository | Name | Version |
 |------------|------|---------|
+|  | appflowy-admin | 0.1.0 |
 |  | appflowy-cloud | 0.1.0 |
 |  | appflowy-gotrue | 0.1.0 |
 | https://charts.bitnami.com/bitnami | minio | 14.7.14 |
@@ -75,6 +76,8 @@ AppFlowy Web Services
 | postgresql.auth.postgresPassword | string | `"password"` |  |
 | postgresql.primary.persistence.enabled | bool | `true` |  |
 | postgresql.primary.persistence.size | string | `"1Gi"` |  |
+| appflowy-admin.enabled | bool | `true` |  |
+| appflowy-admin.fullnameOverride | string | `"appflowy-admin"` |  |
 | appflowy-gotrue.enabled | bool | `true` |  |
 | appflowy-gotrue.fullnameOverride | string | `"appflowy-gotrue"` |  |
 | appflowy-gotrue.mailer.enabled | bool | `true` |  |

@@ -1,0 +1,19 @@
+{{- if .Values.global.ingress.nginx.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "appflowy-admin.fullname" . }}
+spec:
+  ingressClassName: {{ .Values.global.ingress.nginx.className }}
+  rules:
+    - host: {{ .Values.global.external_host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "appflowy-admin.fullname" . }}
+                port:
+                  number: {{ .Values.service.port }}
+{{- end }}

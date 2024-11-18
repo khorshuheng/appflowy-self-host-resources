@@ -22,3 +22,6 @@ dependencies:
   - name: appflowy-gotrue
     condition: appflowy-gotrue.enabled
     version: 0.1.0
+  - name: appflowy-admin
+    condition: appflowy-admin.enabled
+    version: 0.1.0
