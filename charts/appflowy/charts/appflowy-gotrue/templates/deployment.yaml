@@ -49,6 +49,13 @@ spec:
               value: appflowy-flutter://
             - name: GOTRUE_URI_ALLOW_LIST
               value: "**"
+            - name: GOTRUE_ADMIN_EMAIL
+              value: {{ .Values.global.gotrue.adminEmail }}
+            - name: GOTRUE_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.global.secret.name }}
+                  key: {{ .Values.global.secret.gotrue.adminPassword.key }}
             - name: GOTRUE_JWT_SECRET
               valueFrom:
                 secretKeyRef:
@@ -56,6 +63,8 @@ spec:
                   key: {{ .Values.global.secret.jwt.secret.key }}
             - name: GOTRUE_JWT_EXP
               value: {{ .Values.jwt.expiry | quote }}
+            - name: GOTRUE_JWT_ADMIN_GROUP_NAME
+              value: supabase_admin
             {{- if .Values.oauth.google.enabled }}
             - name: GOTRUE_EXTERNAL_GOOGLE_ENABLED
               value: {{ .Values.oauth.google.enabled | quote }}

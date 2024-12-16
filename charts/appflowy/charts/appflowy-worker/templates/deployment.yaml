@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "appflowy-cloud.fullname" . }}
+  name: {{ include "appflowy-worker.fullname" . }}
   labels:
-    {{- include "appflowy-cloud.labels" . | nindent 4 }}
+    {{- include "appflowy-worker.labels" . | nindent 4 }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "appflowy-cloud.selectorLabels" . | nindent 6 }}
+      {{- include "appflowy-worker.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -16,7 +16,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "appflowy-cloud.labels" . | nindent 8 }}
+        {{- include "appflowy-worker.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -29,45 +29,22 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 8000
-              protocol: TCP
-          readinessProbe:
-            {{- toYaml .Values.readinessProbe | nindent 12 }}
           env:
-            - name: LOG_LEVEL
-              value: {{ .Values.logLevel }}
-            - name: APPFLOWY_ENVIRONMENT
+            - name: APPFLOWY_WORKER_REDIS_URL
+              value: {{ .Values.global.redis.uri }}
+            - name: APPFLOWY_WORKER_ENVIRONMENT
               value: production
-            - name: APPFLOWY_DATABASE_URL
+            - name: APPFLOWY_WORKER_DATABASE_URL
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
                   key: {{ .Values.global.secret.postgres.appflowy.databaseUrl.key }}
-            - name: APPFLOWY_REDIS_URI
-              value: {{ .Values.global.redis.uri }}
-            - name: APPFLOWY_GOTRUE_JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.jwt.secret.key }}
-            - name: APPFLOWY_GOTRUE_BASE_URL
-              value: {{ .Values.gotrue.baseUrl }}
-            - name: APPFLOWY_GOTRUE_ADMIN_EMAIL
-              value: {{ .Values.gotrue.adminEmail }}
-            - name: APPFLOWY_GOTRUE_ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.gotrue.adminPassword.key }}
-            - name: APPFLOWY_S3_CREATE_BUCKET
-              value: {{ .Values.global.s3.createBucket | quote }}
+            - name: APPFLOWY_WORKER_IMPORT_TICK_INTERVAL
+              value: {{ .Values.importTickInterval | quote}}
             - name: APPFLOWY_S3_USE_MINIO
-              value: {{ .Values.global.s3.useMinio | quote }}
+              value: {{ .Values.global.s3.useMinio | quote }} 
             - name: APPFLOWY_S3_MINIO_URL
               value: {{ .Values.global.s3.minioUrl }}
-            {{- if .Values.global.s3.accessKey }}
             - name: APPFLOWY_S3_ACCESS_KEY
               value: {{ .Values.global.s3.accessKey }}
             - name: APPFLOWY_S3_SECRET_KEY
@@ -75,7 +52,6 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
                   key: {{ .Values.global.secret.s3.secret.key }}
-            {{- end }}
             - name: APPFLOWY_S3_BUCKET
               value: {{ .Values.global.s3.bucket }}
             - name: APPFLOWY_S3_REGION
@@ -83,16 +59,15 @@ spec:
             - name: APPFLOWY_MAILER_SMTP_HOST
               value: {{ .Values.global.smtp.host }}
             - name: APPFLOWY_MAILER_SMTP_PORT
-              value: {{ .Values.global.smtp.port | quote }}
+              value: {{ .Values.global.smtp.port | quote}}
             - name: APPFLOWY_MAILER_SMTP_USERNAME
-              value: {{ .Values.global.smtp.user }}
+              value: {{ .Values.global.smtp.username }}
             - name: APPFLOWY_MAILER_SMTP_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
                   key: {{ .Values.global.secret.smtp.password.key }}
-            - name: APPFLOWY_ACCESS_CONTROL
-              value: {{ .Values.accessControl.enabled | quote }}
+
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}

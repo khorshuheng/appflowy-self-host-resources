@@ -1,6 +1,6 @@
 # appflowy-cloud
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.7.19](https://img.shields.io/badge/AppVersion-0.7.19-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.8.9](https://img.shields.io/badge/AppVersion-0.8.9-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -20,14 +20,6 @@ A Helm chart for Kubernetes
 | service.type | string | `"ClusterIP"` |  |
 | service.port | int | `80` |  |
 | logLevel | string | `"info"` | Stdout log level |
-| redis.uri | string | `"redis://appflowy-redis-headless:6379"` | Redis URI |
-| gotrue.baseUrl | string | `"http://appflowy-gotrue"` | GoTrue base URL |
-| gotrue.adminEmail | string | `"admin@example.com"` | GoTrue admin user, will be created by AppFlowy Cloud if not exists. |
-| s3.createBucket | string | `"true"` | Create bucket on startup. If false, bucket must be created manually. |
-| s3.bucket | string | `"appflowy"` | S3 Bucket name |
-| s3.useMinio | string | `"true"` | Set this to true when using Minio or other S3-compatible services. |
-| s3.minioUrl | string | `"http://appflowy-minio:9000"` | Url for the S3-compatible service |
-| s3.accessKey | string | `""` | S3 access key |
 | accessControl.enabled | bool | `true` | Enable access control |
 | resources | object | `{}` |  |
 | readinessProbe.httpGet.path | string | `"/metrics"` |  |

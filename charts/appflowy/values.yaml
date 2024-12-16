@@ -26,6 +26,9 @@ global:
       allowOrigins: "*"
       # -- CORS max age
       maxAge: "3600"
+  gotrue:
+    # -- Gotrue admin user to be created when Gotrue is deployed for the first time
+    adminEmail: "admin@example.com"
   database:
     # -- Database host name
     host: appflowy-postgres
@@ -37,6 +40,22 @@ global:
     username: appflowy
     # -- Postgres admin user, to be used by the setup job.
     adminUsername: postgres
+  redis:
+    # -- Redis URI
+    uri: "redis://appflowy-redis-headless:6379"
+  s3:
+    # -- Create bucket on startup. If false, bucket must be created manually.
+    createBucket: "true"
+    # -- Set this to true when using Minio or other S3-compatible services.
+    useMinio: "true"
+    # -- S3 Bucket name
+    bucket: "appflowy"
+    # -- Url for the S3-compatible service
+    minioUrl: "http://appflowy-minio:9000"
+    # -- S3 access key
+    accessKey: "minioadmin"
+    # -- S3 region
+    region: "us-east-1"
   smtp:
     # -- SMTP host name, required for sending invitation emails and magic links.
     host: "smtp.gmail.com"
@@ -47,19 +66,20 @@ global:
   secret:
     # -- Name of the secret which stores all the sensitive information required for AppFlowy
     name: appflowy
-    # -- Create or update the Kubernetes secret. If set to false, the secret must be created manually, and the name should be adjusted accordingly.
+    # -- Create or update the Kubernetes secret. If set to false, the secret must be created manually, and the name should be adjusted accordingly. Otherwise, a new
+    # -- secret will be created with the values specified in helm values.
     create: true
     postgres:
       adminPassword:
         # -- Secret key name for the Postgres admin password
         key: postgresAdminPassword
-        # -- Secret value for the Postgres admin password
+        # -- Secret value for the Postgres admin password.
         value: password
       gotrue:
         postgresPassword:
           # -- Secret key name for the password of the gotrue postgres user (supabase_admin_auth)
           key: gotruePostgresPassword
-          # -- Secret value for the password of the gotrue postgres user (supabase_admin_auth)
+          # -- Secret value for the password of the gotrue postgres user (supabase_admin_auth).
           value: password
         databaseUrl:
           # -- Database url, as inferred from the postgres credentials. Takes the form of: postgres://supabase_auth_admin:<password>@<host>:<port>/<database name>
@@ -154,16 +174,8 @@ appflowy-gotrue:
 appflowy-cloud:
   enabled: true
   fullnameOverride: appflowy-cloud
-  redis:
-    uri: "redis://appflowy-redis-headless:6379"
   gotrue:
     baseUrl: "http://appflowy-gotrue"
-    adminEmail: "admin@example.com"
-  s3:
-    createBucket: "true"
-    useMinio: "true"
-    minioUrl: "http://appflowy-minio:9000"
-    accessKey: "minioadmin"
   accessControl:
     enabled: true
   ingress:

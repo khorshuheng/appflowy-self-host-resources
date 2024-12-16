@@ -21,10 +21,8 @@ service:
   port: 80
 
 jwt:
+  # -- Access token expiry time
   expiry: 3600
-
-mailer:
-  adminEmail: "admin@example.com"
 
 oauth:
   google:
@@ -39,6 +37,9 @@ oauth:
   apple:
     enabled: false
     clientId: ""
+
+# -- If set to true, admin will need to manually create user accounts
+disableSignup: false
 
 resources: {}
   # limits:

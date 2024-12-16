@@ -30,20 +30,28 @@ AppFlowy Web Services
 | global.ingress.websocket.timeout | int | `86400` | Define timeout for websocket connection. Currently only used for the Nginx ingress. |
 | global.ingress.cors.allowOrigins | string | `"*"` | Configure the domains which are allowed to access the API server eg. domain for AppFlowy Web |
 | global.ingress.cors.maxAge | string | `"3600"` | CORS max age |
+| global.gotrue.adminEmail | string | `"admin@example.com"` | Gotrue admin user to be created when Gotrue is deployed for the first time |
 | global.database.host | string | `"appflowy-postgres"` | Database host name |
 | global.database.name | string | `"appflowy"` | Database name |
 | global.database.port | int | `5432` | Database port |
 | global.database.username | string | `"appflowy"` | Postgres user, to be used by the AppFlowy API server |
 | global.database.adminUsername | string | `"postgres"` | Postgres admin user, to be used by the setup job. |
+| global.redis.uri | string | `"redis://appflowy-redis-headless:6379"` | Redis URI |
+| global.s3.createBucket | string | `"true"` | Create bucket on startup. If false, bucket must be created manually. |
+| global.s3.useMinio | string | `"true"` | Set this to true when using Minio or other S3-compatible services. |
+| global.s3.bucket | string | `"appflowy"` | S3 Bucket name |
+| global.s3.minioUrl | string | `"http://appflowy-minio:9000"` | Url for the S3-compatible service |
+| global.s3.accessKey | string | `"minioadmin"` | S3 access key |
+| global.s3.region | string | `"us-east-1"` | S3 region |
 | global.smtp.host | string | `"smtp.gmail.com"` | SMTP host name, required for sending invitation emails and magic links. |
 | global.smtp.port | int | `465` | SMTP port number. Make sure that TLS is supported. STARTTLS, such as port 587 for gmail and mailgun, is not supported. |
 | global.smtp.user | string | `"user@gmail.com"` | SMTP user name |
 | global.secret.name | string | `"appflowy"` | Name of the secret which stores all the sensitive information required for AppFlowy |
-| global.secret.create | bool | `true` | Create or update the Kubernetes secret. If set to false, the secret must be created manually, and the name should be adjusted accordingly. |
+| global.secret.create | bool | `true` | secret will be created with the values specified in helm values. |
 | global.secret.postgres.adminPassword.key | string | `"postgresAdminPassword"` | Secret key name for the Postgres admin password |
-| global.secret.postgres.adminPassword.value | string | `"password"` | Secret value for the Postgres admin password |
+| global.secret.postgres.adminPassword.value | string | `"password"` | Secret value for the Postgres admin password. |
 | global.secret.postgres.gotrue.postgresPassword.key | string | `"gotruePostgresPassword"` | Secret key name for the password of the gotrue postgres user (supabase_admin_auth) |
-| global.secret.postgres.gotrue.postgresPassword.value | string | `"password"` | Secret value for the password of the gotrue postgres user (supabase_admin_auth) |
+| global.secret.postgres.gotrue.postgresPassword.value | string | `"password"` | Secret value for the password of the gotrue postgres user (supabase_admin_auth). |
 | global.secret.postgres.gotrue.databaseUrl.key | string | `"gotrueDatabaseUrl"` | Database url, as inferred from the postgres credentials. Takes the form of: postgres://supabase_auth_admin:<password>@<host>:<port>/<database name> |
 | global.secret.postgres.appflowy.postgresPassword.key | string | `"postgresPassword"` | Secret key name for the password of the appflowy postgres user |
 | global.secret.postgres.appflowy.postgresPassword.value | string | `"password"` | Secret value for the password of the appflowy postgres user |
@@ -85,13 +93,7 @@ AppFlowy Web Services
 | appflowy-gotrue.extraEnv | list | `[]` |  |
 | appflowy-cloud.enabled | bool | `true` |  |
 | appflowy-cloud.fullnameOverride | string | `"appflowy-cloud"` |  |
-| appflowy-cloud.redis.uri | string | `"redis://appflowy-redis-headless:6379"` |  |
 | appflowy-cloud.gotrue.baseUrl | string | `"http://appflowy-gotrue"` |  |
-| appflowy-cloud.gotrue.adminEmail | string | `"admin@example.com"` |  |
-| appflowy-cloud.s3.createBucket | string | `"true"` |  |
-| appflowy-cloud.s3.useMinio | string | `"true"` |  |
-| appflowy-cloud.s3.minioUrl | string | `"http://appflowy-minio:9000"` |  |
-| appflowy-cloud.s3.accessKey | string | `"minioadmin"` |  |
 | appflowy-cloud.accessControl.enabled | bool | `true` |  |
 | appflowy-cloud.ingress.enabled | bool | `true` |  |
 | redis.enabled | bool | `true` |  |
