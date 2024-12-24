@@ -59,10 +59,12 @@ global:
   smtp:
     # -- SMTP host name, required for sending invitation emails and magic links.
     host: "smtp.gmail.com"
-    # -- SMTP port number. Make sure that TLS is supported. STARTTLS, such as port 587 for gmail and mailgun, is not supported.
+    # -- SMTP port number. By default, only TLS is supported. STARTTLS, such as port 587 for gmail and mailgun, is only supported if you change tls kind to opportunistic.
     port: 465
     # -- SMTP user name
     user: user@gmail.com
+    # -- SMTP TLS kind. Accepted values: "none", "wrapper", "required", "opportunistic"
+    tlsKind: "wrapper"
   secret:
     # -- Name of the secret which stores all the sensitive information required for AppFlowy
     name: appflowy

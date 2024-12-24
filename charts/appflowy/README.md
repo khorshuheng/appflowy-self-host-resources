@@ -1,8 +1,8 @@
 # appflowy
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
-AppFlowy Web Services
+AppFlowy Cloud Helm Chart
 
 ## Requirements
 
@@ -44,8 +44,9 @@ AppFlowy Web Services
 | global.s3.accessKey | string | `"minioadmin"` | S3 access key |
 | global.s3.region | string | `"us-east-1"` | S3 region |
 | global.smtp.host | string | `"smtp.gmail.com"` | SMTP host name, required for sending invitation emails and magic links. |
-| global.smtp.port | int | `465` | SMTP port number. Make sure that TLS is supported. STARTTLS, such as port 587 for gmail and mailgun, is not supported. |
+| global.smtp.port | int | `465` | SMTP port number. By default, only TLS is supported. STARTTLS, such as port 587 for gmail and mailgun, is only supported if you change tls kind to opportunistic. |
 | global.smtp.user | string | `"user@gmail.com"` | SMTP user name |
+| global.smtp.tlsKind | string | `"wrapper"` | SMTP TLS kind. Accepted values: "none", "wrapper", "required", "opportunistic" |
 | global.secret.name | string | `"appflowy"` | Name of the secret which stores all the sensitive information required for AppFlowy |
 | global.secret.create | bool | `true` | secret will be created with the values specified in helm values. |
 | global.secret.postgres.adminPassword.key | string | `"postgresAdminPassword"` | Secret key name for the Postgres admin password |

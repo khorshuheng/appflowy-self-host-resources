@@ -84,6 +84,8 @@ spec:
               value: {{ .Values.global.smtp.host }}
             - name: APPFLOWY_MAILER_SMTP_PORT
               value: {{ .Values.global.smtp.port | quote }}
+            - name: APPFLOWY_MAILER_SMTP_TLS_KIND
+              value: {{ .Values.global.smtp.tlsKind }}
             - name: APPFLOWY_MAILER_SMTP_USERNAME
               value: {{ .Values.global.smtp.user }}
             - name: APPFLOWY_MAILER_SMTP_PASSWORD
