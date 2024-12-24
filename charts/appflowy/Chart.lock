@@ -14,5 +14,8 @@ dependencies:
 - name: appflowy-gotrue
   repository: ""
   version: 0.1.0
-digest: sha256:64d6ac29cde70747d6c311e12b1d296f9bc6f71fe0eff4845d4134e71b85d86d
-generated: "2024-10-02T17:40:30.917836031+08:00"
+- name: appflowy-admin
+  repository: ""
+  version: 0.1.0
+digest: sha256:04534ddafbaa7429e1888d46789128ef2f741ea9ba015ab430d4a370b4e1d6b5
+generated: "2024-12-24T10:27:59.024206514+08:00"
