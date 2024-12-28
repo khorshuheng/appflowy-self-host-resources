@@ -1,15 +1,4 @@
 {{- define "setup_appflowy_db.sql" }}
-CREATE OR REPLACE FUNCTION create_roles(roles text []) RETURNS void LANGUAGE plpgsql AS $$
-DECLARE role_name text;
-BEGIN FOREACH role_name IN ARRAY roles LOOP IF NOT EXISTS (
-    SELECT 1
-    FROM pg_roles
-    WHERE rolname = role_name
-) THEN EXECUTE 'CREATE ROLE ' || role_name;
-END IF;
-END LOOP;
-END;
-$$;
 DO $$ BEGIN IF NOT EXISTS (
     SELECT
     FROM pg_catalog.pg_roles
