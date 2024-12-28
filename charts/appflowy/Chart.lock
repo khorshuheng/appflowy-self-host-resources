@@ -17,5 +17,8 @@ dependencies:
 - name: appflowy-admin
   repository: ""
   version: 0.1.0
-digest: sha256:04534ddafbaa7429e1888d46789128ef2f741ea9ba015ab430d4a370b4e1d6b5
-generated: "2024-12-24T10:27:59.024206514+08:00"
+- name: appflowy-worker
+  repository: ""
+  version: 0.1.0
+digest: sha256:5574e23192978d597735ab247eb361867e1b40a2727d690c56545cfa99f6b299
+generated: "2024-12-28T23:32:19.63390363+08:00"
