@@ -1,6 +1,6 @@
 # appflowy
 
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 AppFlowy Cloud Helm Chart
 
@@ -11,6 +11,7 @@ AppFlowy Cloud Helm Chart
 |  | appflowy-admin | 0.1.0 |
 |  | appflowy-cloud | 0.1.0 |
 |  | appflowy-gotrue | 0.1.0 |
+|  | appflowy-worker | 0.1.0 |
 | https://charts.bitnami.com/bitnami | minio | 14.7.14 |
 | https://charts.bitnami.com/bitnami | postgresql | 15.5.24 |
 | https://charts.bitnami.com/bitnami | redis | 20.0.3 |

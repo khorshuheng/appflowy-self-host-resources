@@ -2,7 +2,7 @@ apiVersion: v2
 name: appflowy
 description: AppFlowy Cloud Helm Chart
 type: application
-version: 0.1.2
+version: 0.1.3
 dependencies:
   - name: redis
     condition: redis.enabled
@@ -24,4 +24,7 @@ dependencies:
     version: 0.1.0
   - name: appflowy-admin
     condition: appflowy-admin.enabled
+    version: 0.1.0
+  - name: appflowy-worker
+    condition: appflowy-worker.enabled
     version: 0.1.0
