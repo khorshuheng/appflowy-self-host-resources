@@ -18,7 +18,7 @@ CREATE EXTENSION IF NOT EXISTS vector;
 
 {{- define "setup.sh" }}
 #!/bin/bash
-set -ex
+set -e
 echo "Waiting to connect to postgres..."
 timeout={{ .Values.setupJob.postgresConnectTimeout }}
 start_time=$(date +%s)
