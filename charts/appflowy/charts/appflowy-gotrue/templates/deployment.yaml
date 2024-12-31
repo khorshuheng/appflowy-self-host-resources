@@ -37,7 +37,7 @@ spec:
             - name: PORT
               value: "9999"
             - name: API_EXTERNAL_URL
-              value: {{ printf "%s://%s:%d" .Values.global.scheme .Values.global.external_host (.Values.global.external_port | int) }}
+              value: {{ printf "%s://%s:%d/gotrue" .Values.global.scheme .Values.global.external_host (.Values.global.external_port | int) }}
             - name: GOTRUE_DB_DRIVER
               value: postgres
             - name: DATABASE_URL
