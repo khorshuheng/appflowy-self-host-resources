@@ -26,8 +26,11 @@ accessControl:
   # -- Enable access control
   enabled: true
 collab:
+  # -- Maximum number of inactive collab group to be removed at the same time
   removeBatchSize: 100
+  # -- Interval in seconds to persist in-memory collab to persistent storage
   groupPersistenceInterval: 60
+  # -- Old messages to be removed from Redis stream after the collab is persist
   groupGracePeriodSecs: 60
 
 resources: {}

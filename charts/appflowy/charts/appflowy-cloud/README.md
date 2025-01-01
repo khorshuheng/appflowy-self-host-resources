@@ -21,9 +21,9 @@ A Helm chart for Kubernetes
 | service.port | int | `80` |  |
 | logLevel | string | `"info"` | Stdout log level |
 | accessControl.enabled | bool | `true` | Enable access control |
-| collab.removeBatchSize | int | `100` |  |
-| collab.groupPersistenceInterval | int | `60` |  |
-| collab.groupGracePeriodSecs | int | `60` |  |
+| collab.removeBatchSize | int | `100` | Maximum number of inactive collab group to be removed at the same time |
+| collab.groupPersistenceInterval | int | `60` | Interval in seconds to persist in-memory collab to persistent storage |
+| collab.groupGracePeriodSecs | int | `60` | Old messages to be removed from Redis stream after the collab is persist |
 | resources | object | `{}` |  |
 | readinessProbe.httpGet.path | string | `"/metrics"` |  |
 | readinessProbe.httpGet.port | string | `"http"` |  |
