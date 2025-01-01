@@ -1,6 +1,6 @@
 # appflowy-cloud
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.8.17](https://img.shields.io/badge/AppVersion-0.8.17-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.9.0](https://img.shields.io/badge/AppVersion-0.9.0-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -21,6 +21,9 @@ A Helm chart for Kubernetes
 | service.port | int | `80` |  |
 | logLevel | string | `"info"` | Stdout log level |
 | accessControl.enabled | bool | `true` | Enable access control |
+| collab.removeBatchSize | int | `100` |  |
+| collab.groupPersistenceInterval | int | `60` |  |
+| collab.groupGracePeriodSecs | int | `60` |  |
 | resources | object | `{}` |  |
 | readinessProbe.httpGet.path | string | `"/metrics"` |  |
 | readinessProbe.httpGet.port | string | `"http"` |  |

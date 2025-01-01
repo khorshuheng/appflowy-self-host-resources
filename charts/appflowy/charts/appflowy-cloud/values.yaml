@@ -25,6 +25,10 @@ logLevel: "info"
 accessControl:
   # -- Enable access control
   enabled: true
+collab:
+  removeBatchSize: 100
+  groupPersistenceInterval: 60
+  groupGracePeriodSecs: 60
 
 resources: {}
   # limits:

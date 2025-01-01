@@ -95,6 +95,12 @@ spec:
                   key: {{ .Values.global.secret.smtp.password.key }}
             - name: APPFLOWY_ACCESS_CONTROL
               value: {{ .Values.accessControl.enabled | quote }}
+            - name: APPFLOWY_COLLABORATE_REMOVE_BATCH_SIZE
+              value: {{ .Values.collab.removeBatchSize }}
+            - name: APPFLOWY_COLLAB_GROUP_PERSISTENCE_INTERVAL
+              value: {{ .Values.collab.groupPersistenceInterval }}
+            - name: APPFLOWY_COLLAB_GROUP_GRACE_PERIOD_SECS
+              value: {{ .Values.collab.groupGracePeriodSecs }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}
