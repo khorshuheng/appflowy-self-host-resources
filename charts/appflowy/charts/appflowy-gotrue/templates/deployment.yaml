@@ -49,6 +49,8 @@ spec:
               value: appflowy-flutter://
             - name: GOTRUE_URI_ALLOW_LIST
               value: "**"
+            - name: GOTRUE_DISABLE_SIGNUP
+              value: {{ .Values.disableSignUp | quote }}
             - name: GOTRUE_ADMIN_EMAIL
               value: {{ .Values.global.gotrue.adminEmail }}
             - name: GOTRUE_ADMIN_PASSWORD

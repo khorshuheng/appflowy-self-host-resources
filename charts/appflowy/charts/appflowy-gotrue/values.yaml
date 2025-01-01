@@ -39,7 +39,7 @@ oauth:
     clientId: ""
 
 # -- If set to true, admin will need to manually create user accounts
-disableSignup: false
+disableSignUp: false
 
 resources: {}
   # limits:

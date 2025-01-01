@@ -28,7 +28,7 @@ A Helm chart for Kubernetes
 | oauth.github.clientId | string | `""` |  |
 | oauth.apple.enabled | bool | `false` |  |
 | oauth.apple.clientId | string | `""` |  |
-| disableSignup | bool | `false` | If set to true, admin will need to manually create user accounts |
+| disableSignUp | bool | `false` | If set to true, admin will need to manually create user accounts |
 | resources | object | `{}` |  |
 | readinessProbe.httpGet.path | string | `"/health"` |  |
 | readinessProbe.httpGet.port | string | `"http"` |  |
