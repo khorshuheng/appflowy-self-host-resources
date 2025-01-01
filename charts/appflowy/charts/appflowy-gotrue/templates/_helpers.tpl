@@ -51,7 +51,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{- define "appflowy-gotrue.callback" -}}
-{{- printf "%s://%s:%d/gotrue/callback" .Values.global.scheme .Values.global.external_host (.Values.global.external_port | int) }}
+{{- printf "%s://%s:%d/gotrue/callback" .Values.global.scheme .Values.global.externalHost (.Values.global.externalPort | int) }}
 {{- end }}
 
 {{- define "appflowy-gotrue.strip-prefix-middleware.fullname" -}}

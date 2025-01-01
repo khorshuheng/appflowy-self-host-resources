@@ -2,9 +2,9 @@ global:
   # -- Accepted values: "http" or "https"
   scheme: "http"
   # -- The host name which can be used for the AppFlowy client to reach the API server
-  external_host: "appflowy.mydomain.com"
+  externalHost: "appflowy.mydomain.com"
   # -- The port number which can be used for the AppFlowy client to reach the API server
-  external_port: 80
+  externalPort: 80
   ingress:
     nginx:
       # -- Enable to create ingress for NGINX Ingress Controller

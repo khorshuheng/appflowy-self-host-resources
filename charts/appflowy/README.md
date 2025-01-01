@@ -1,6 +1,6 @@
 # appflowy
 
-![Version: 0.1.9](https://img.shields.io/badge/Version-0.1.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.11](https://img.shields.io/badge/Version-0.1.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 AppFlowy Cloud Helm Chart
 
@@ -21,8 +21,8 @@ AppFlowy Cloud Helm Chart
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | global.scheme | string | `"http"` | Accepted values: "http" or "https" |
-| global.external_host | string | `"appflowy.mydomain.com"` | The host name which can be used for the AppFlowy client to reach the API server |
-| global.external_port | int | `80` | The port number which can be used for the AppFlowy client to reach the API server |
+| global.externalHost | string | `"appflowy.mydomain.com"` | The host name which can be used for the AppFlowy client to reach the API server |
+| global.externalPort | int | `80` | The port number which can be used for the AppFlowy client to reach the API server |
 | global.ingress.nginx.enabled | bool | `true` | Enable to create ingress for NGINX Ingress Controller |
 | global.ingress.nginx.className | string | `"nginx"` | The class name of the NGINX Ingress Controller ingress |
 | global.ingress.traefik.enabled | bool | `false` | Enable to create IngressRoute for Traefik Ingress Controller |
@@ -75,8 +75,8 @@ AppFlowy Cloud Helm Chart
 | global.secret.smtp.password.value | string | `"password"` | Secret value for the SMTP password. For gmail, make sures to use an app password instead of the regular user password. |
 | global.secret.s3.secret.key | string | `"s3Secret"` | Secret key name for the S3 secret |
 | global.secret.s3.secret.value | string | `"password"` | Secret value for the S3 secret |
-| global.secret.ai.openAI.key | string | `"openAIAPIKey"` | Secret key name for the OpenAI API key |
-| global.secret.ai.openAI.value | string | `""` | Secret value for the OpenAI API key. Leave this empty if you don't wish to use OpenAI. |
+| global.secret.ai.openAIAPIKey.key | string | `"openAIAPIKey"` | Secret key name for the OpenAI API key |
+| global.secret.ai.openAIAPIKey.value | string | `""` | Secret value for the OpenAI API key. Leave this empty if you don't wish to use OpenAI. |
 | nameOverride | string | `""` |  |
 | fullnameOverride | string | `"appflowy"` | Override the name of the resources created by the chart |
 | postgresql.enabled | bool | `true` |  |
