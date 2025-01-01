@@ -24,6 +24,7 @@ A Helm chart for Kubernetes
 | collab.removeBatchSize | int | `100` | Maximum number of inactive collab group to be removed at the same time |
 | collab.groupPersistenceInterval | int | `60` | Interval in seconds to persist in-memory collab to persistent storage |
 | collab.groupGracePeriodSecs | int | `60` | Old messages to be removed from Redis stream after the collab is persist |
+| indexer.enabled | bool | `true` | Enable embeddings generation for collab documents. This value is ignored if AI is not enabled. |
 | resources | object | `{}` |  |
 | readinessProbe.httpGet.path | string | `"/metrics"` |  |
 | readinessProbe.httpGet.port | string | `"http"` |  |

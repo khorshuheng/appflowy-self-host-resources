@@ -1,6 +1,6 @@
 # appflowy
 
-![Version: 0.1.7](https://img.shields.io/badge/Version-0.1.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.8](https://img.shields.io/badge/Version-0.1.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 AppFlowy Cloud Helm Chart
 
@@ -43,11 +43,12 @@ AppFlowy Cloud Helm Chart
 | global.s3.bucket | string | `"appflowy"` | S3 Bucket name |
 | global.s3.minioUrl | string | `"http://appflowy-minio:9000"` | Url for the S3-compatible service |
 | global.s3.accessKey | string | `"minioadmin"` | S3 access key |
-| global.s3.region | string | `"us-east-1"` | S3 region |
+| global.s3.region | string | `"us-east-1"` | S3 region. Not used for Minio. |
 | global.smtp.host | string | `"smtp.gmail.com"` | SMTP host name, required for sending invitation emails and magic links. |
 | global.smtp.port | int | `465` | SMTP port number. By default, only TLS is supported. STARTTLS, such as port 587 for gmail and mailgun, is only supported if you change tls kind to opportunistic. |
 | global.smtp.user | string | `"user@gmail.com"` | SMTP user name |
 | global.smtp.tlsKind | string | `"wrapper"` | SMTP TLS kind. Accepted values: "none", "wrapper", "required", "opportunistic" |
+| global.ai.enabled | bool | `false` | As of now, this chart does not include AppFlowy AI service, so enabling AI is only needed to enable embedding-based search.. |
 | global.secret.name | string | `"appflowy"` | Name of the secret which stores all the sensitive information required for AppFlowy |
 | global.secret.create | bool | `true` | secret will be created with the values specified in helm values. |
 | global.secret.postgres.adminPassword.key | string | `"postgresAdminPassword"` | Secret key name for the Postgres admin password |
@@ -74,6 +75,8 @@ AppFlowy Cloud Helm Chart
 | global.secret.smtp.password.value | string | `"password"` | Secret value for the SMTP password. For gmail, make sures to use an app password instead of the regular user password. |
 | global.secret.s3.secret.key | string | `"s3Secret"` | Secret key name for the S3 secret |
 | global.secret.s3.secret.value | string | `"password"` | Secret value for the S3 secret |
+| global.secret.ai.openAI.key | string | `"openAIAPIKey"` | Secret key name for the OpenAI API key |
+| global.secret.ai.openAI.value | string | `""` | Secret value for the OpenAI API key. Leave this empty if you don't wish to use OpenAI. |
 | nameOverride | string | `""` |  |
 | fullnameOverride | string | `"appflowy"` | Override the name of the resources created by the chart |
 | postgresql.enabled | bool | `true` |  |

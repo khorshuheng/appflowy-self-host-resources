@@ -20,9 +20,12 @@ nameOverride: ""
 fullnameOverride: ""
 
 importTickInterval: 30
+indexer:
+  # -- Enable embeddings generation for collab documents. This value is ignored if AI is not enabled.
+  enabled: true
 
 # This is for setting Kubernetes Annotations to a Pod.
-# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/ 
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 podAnnotations: {}
 # This is for setting Kubernetes Labels to a Pod.
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/

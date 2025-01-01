@@ -54,7 +54,7 @@ global:
     minioUrl: "http://appflowy-minio:9000"
     # -- S3 access key
     accessKey: "minioadmin"
-    # -- S3 region
+    # -- S3 region. Not used for Minio.
     region: "us-east-1"
   smtp:
     # -- SMTP host name, required for sending invitation emails and magic links.
@@ -65,6 +65,10 @@ global:
     user: user@gmail.com
     # -- SMTP TLS kind. Accepted values: "none", "wrapper", "required", "opportunistic"
     tlsKind: "wrapper"
+  ai:
+    # -- Enable AI related functionalities. Require OpenAI API key to be set under secret.
+    # -- As of now, this chart does not include AppFlowy AI service, so enabling AI is only needed to enable embedding-based search..
+    enabled: false
   secret:
     # -- Name of the secret which stores all the sensitive information required for AppFlowy
     name: appflowy
@@ -140,6 +144,12 @@ global:
         key: s3Secret
         # -- Secret value for the S3 secret
         value: "password"
+    ai:
+      openAI:
+        # -- Secret key name for the OpenAI API key
+        key: openAIAPIKey
+        # -- Secret value for the OpenAI API key. Leave this empty if you don't wish to use OpenAI.
+        value: ""
 
 nameOverride: ""
 # -- Override the name of the resources created by the chart

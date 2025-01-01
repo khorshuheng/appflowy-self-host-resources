@@ -32,6 +32,9 @@ collab:
   groupPersistenceInterval: 60
   # -- Old messages to be removed from Redis stream after the collab is persist
   groupGracePeriodSecs: 60
+indexer:
+  # -- Enable embeddings generation for collab documents. This value is ignored if AI is not enabled.
+  enabled: true
 
 resources: {}
   # limits:

@@ -16,6 +16,7 @@ A Helm chart for Kubernetes
 | nameOverride | string | `""` |  |
 | fullnameOverride | string | `""` |  |
 | importTickInterval | int | `30` |  |
+| indexer.enabled | bool | `true` | Enable embeddings generation for collab documents. This value is ignored if AI is not enabled. |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | resources | object | `{}` |  |
