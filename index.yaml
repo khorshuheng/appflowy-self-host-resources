@@ -2,6 +2,44 @@ apiVersion: v1
 entries:
   appflowy:
   - apiVersion: v2
+    created: "2025-01-01T16:57:22.945076769Z"
+    dependencies:
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 20.0.3
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.24
+    - condition: minio.enabled
+      name: minio
+      repository: https://charts.bitnami.com/bitnami
+      version: 14.7.14
+    - condition: appflowy-cloud.enabled
+      name: appflowy-cloud
+      repository: ""
+      version: 0.1.0
+    - condition: appflowy-gotrue.enabled
+      name: appflowy-gotrue
+      repository: ""
+      version: 0.1.0
+    - condition: appflowy-admin.enabled
+      name: appflowy-admin
+      repository: ""
+      version: 0.1.0
+    - condition: appflowy-worker.enabled
+      name: appflowy-worker
+      repository: ""
+      version: 0.1.0
+    description: AppFlowy Cloud Helm Chart
+    digest: 47d32d00ecfe0f82977c5f7471e0d2cbcf65538d048bc8be2f84842768e196ae
+    name: appflowy
+    type: application
+    urls:
+    - https://github.com/khorshuheng/appflowy-self-host-resources/releases/download/appflowy-0.1.11/appflowy-0.1.11.tgz
+    version: 0.1.11
+  - apiVersion: v2
     created: "2025-01-01T16:37:09.849343157Z"
     dependencies:
     - condition: redis.enabled
@@ -373,4 +411,4 @@ entries:
     urls:
     - https://github.com/khorshuheng/appflowy-self-host-resources/releases/download/appflowy-0.1.1/appflowy-0.1.1.tgz
     version: 0.1.1
-generated: "2025-01-01T16:37:09.849396476Z"
+generated: "2025-01-01T16:57:22.945133355Z"
