@@ -88,6 +88,8 @@ spec:
               value: {{ .Values.global.smtp.tlsKind }}
             - name: APPFLOWY_MAILER_SMTP_USERNAME
               value: {{ .Values.global.smtp.user }}
+            - name: APPFLOWY_MAILER_SMTP_EMAIL
+              value: {{ .Values.global.smtp.email }}
             - name: APPFLOWY_MAILER_SMTP_PASSWORD
               valueFrom:
                 secretKeyRef:

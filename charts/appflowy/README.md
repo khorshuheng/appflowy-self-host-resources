@@ -1,6 +1,6 @@
 # appflowy
 
-![Version: 0.1.14](https://img.shields.io/badge/Version-0.1.14-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.15](https://img.shields.io/badge/Version-0.1.15-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 AppFlowy Cloud Helm Chart
 
@@ -47,6 +47,7 @@ AppFlowy Cloud Helm Chart
 | global.smtp.host | string | `"smtp.gmail.com"` | SMTP host name, required for sending invitation emails and magic links. |
 | global.smtp.port | int | `465` | SMTP port number. By default, only TLS is supported. STARTTLS, such as port 587 for gmail and mailgun, is only supported if you change tls kind to opportunistic. |
 | global.smtp.user | string | `"user@gmail.com"` | SMTP user name |
+| global.smtp.email | string | `"user@gmail.com"` | SMTP email |
 | global.smtp.tlsKind | string | `"wrapper"` | SMTP TLS kind. Accepted values: "none", "wrapper", "required", "opportunistic" |
 | global.ai.enabled | bool | `false` | As of now, this chart does not include AppFlowy AI service, so enabling AI is only needed to enable embedding-based search.. |
 | global.secret.name | string | `"appflowy"` | Name of the secret which stores all the sensitive information required for AppFlowy |

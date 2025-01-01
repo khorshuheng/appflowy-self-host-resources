@@ -63,6 +63,8 @@ global:
     port: 465
     # -- SMTP user name
     user: user@gmail.com
+    # -- SMTP email
+    email: user@gmail.com
     # -- SMTP TLS kind. Accepted values: "none", "wrapper", "required", "opportunistic"
     tlsKind: "wrapper"
   ai:
