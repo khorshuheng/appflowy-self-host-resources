@@ -7,12 +7,12 @@ spec:
   entryPoints:
     - {{ if eq .Values.global.scheme "https" }}{{ .Values.global.ingress.traefik.secureEntryPoint }}{{ else }}{{ .Values.global.ingress.traefik.entryPoint }}{{ end }}
   routes:
-    - match: Host(`{{ .Values.global.external_host }}`) && PathPrefix(`/api`)
+    - match: Host(`{{ .Values.global.externalHost }}`) && PathPrefix(`/api`)
       kind: Rule
       services:
         - name: {{ include "appflowy-cloud.fullname" . }}
           port: {{ .Values.service.port }}
-    - match: Host(`{{ .Values.global.external_host }}`) && PathPrefix(`/ws`)
+    - match: Host(`{{ .Values.global.externalHost }}`) && PathPrefix(`/ws`)
       kind: Rule
       services:
         - name: {{ include "appflowy-cloud.fullname" . }}

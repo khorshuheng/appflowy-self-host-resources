@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: {{ .Values.global.ingress.nginx.className }}
   rules:
-    - host: {{ .Values.global.external_host }}
+    - host: {{ .Values.global.externalHost }}
       http:
         paths:
           - path: /
