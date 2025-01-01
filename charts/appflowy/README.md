@@ -95,6 +95,7 @@ AppFlowy Cloud Helm Chart
 | appflowy-gotrue.extraEnv | list | `[]` |  |
 | appflowy-cloud.enabled | bool | `true` |  |
 | appflowy-cloud.fullnameOverride | string | `"appflowy-cloud"` |  |
+| appflowy-cloud.gotrue.adminEmail | string | `"admin@example.com"` |  |
 | appflowy-cloud.gotrue.baseUrl | string | `"http://appflowy-gotrue"` |  |
 | appflowy-cloud.accessControl.enabled | bool | `true` |  |
 | appflowy-cloud.ingress.enabled | bool | `true` |  |
