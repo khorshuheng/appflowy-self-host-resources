@@ -145,7 +145,7 @@ global:
         # -- Secret value for the S3 secret
         value: "password"
     ai:
-      openAI:
+      openAIAPIKey:
         # -- Secret key name for the OpenAI API key
         key: openAIAPIKey
         # -- Secret value for the OpenAI API key. Leave this empty if you don't wish to use OpenAI.

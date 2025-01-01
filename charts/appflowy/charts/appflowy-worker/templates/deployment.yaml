@@ -74,7 +74,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.ai.openAI.apiKey }}
+                  key: {{ .Values.global.secret.ai.openAIAPIKey.key }}
             {{- end }}
 
           resources:
