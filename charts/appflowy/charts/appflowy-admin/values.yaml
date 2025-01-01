@@ -39,9 +39,6 @@ appflowyCloud:
 gotrue:
   # -- GoTrue URI
   baseUrl: "http://appflowy-gotrue"
-redis:
-  # -- Redis URI
-  uri: "redis://appflowy-redis-headless:6379"
 
 
 resources: {}
