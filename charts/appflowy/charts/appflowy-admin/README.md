@@ -21,7 +21,6 @@ A Helm chart for Kubernetes
 | service.port | int | `80` |  |
 | appflowyCloud.baseUrl | string | `"http://appflowy-cloud"` | Appflowy Cloud URI |
 | gotrue.baseUrl | string | `"http://appflowy-gotrue"` | GoTrue URI |
-| redis.uri | string | `"redis://appflowy-redis-headless:6379"` | Redis URI |
 | resources | object | `{}` |  |
 | volumes | list | `[]` |  |
 | volumeMounts | list | `[]` |  |

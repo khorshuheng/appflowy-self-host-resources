@@ -25,6 +25,9 @@ logLevel: "info"
 accessControl:
   # -- Enable access control
   enabled: true
+gotrue:
+  # -- End point of GoTrue service
+  baseUrl: "http://appflowy-gotrue"
 collab:
   # -- Maximum number of inactive collab group to be removed at the same time
   removeBatchSize: 100

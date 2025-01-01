@@ -187,7 +187,6 @@ appflowy-cloud:
   enabled: true
   fullnameOverride: appflowy-cloud
   gotrue:
-    adminEmail: "admin@example.com"
     baseUrl: "http://appflowy-gotrue"
   accessControl:
     enabled: true

@@ -1,6 +1,6 @@
 # appflowy
 
-![Version: 0.1.11](https://img.shields.io/badge/Version-0.1.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.14](https://img.shields.io/badge/Version-0.1.14-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 AppFlowy Cloud Helm Chart
 
@@ -98,7 +98,6 @@ AppFlowy Cloud Helm Chart
 | appflowy-gotrue.extraEnv | list | `[]` |  |
 | appflowy-cloud.enabled | bool | `true` |  |
 | appflowy-cloud.fullnameOverride | string | `"appflowy-cloud"` |  |
-| appflowy-cloud.gotrue.adminEmail | string | `"admin@example.com"` |  |
 | appflowy-cloud.gotrue.baseUrl | string | `"http://appflowy-gotrue"` |  |
 | appflowy-cloud.accessControl.enabled | bool | `true` |  |
 | appflowy-cloud.ingress.enabled | bool | `true` |  |
