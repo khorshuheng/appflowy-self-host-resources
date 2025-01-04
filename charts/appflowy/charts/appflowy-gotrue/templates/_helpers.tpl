@@ -2,23 +2,23 @@
 Expand the name of the chart.
 */}}
 {{- define "appflowy-gotrue.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- default .Chart.Name .Values.nameOverride | trunc 50 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Create a default fully qualified app name.
-We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
-If release name contains chart name it will be used as a full name.
+We truncate at 50 chars instead of 63 because there are some resources in this chart (such as traefik middleware) that derive
+the resource name from the full name with suffix.
 */}}
 {{- define "appflowy-gotrue.fullname" -}}
 {{- if .Values.fullnameOverride }}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
+{{- .Values.fullnameOverride | trunc 50 | trimSuffix "-" }}
 {{- else }}
 {{- $name := default .Chart.Name .Values.nameOverride }}
 {{- if contains $name .Release.Name }}
-{{- .Release.Name | trunc 63 | trimSuffix "-" }}
+{{- .Release.Name | trunc 50 | trimSuffix "-" }}
 {{- else }}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
+{{- printf "%s-%s" .Release.Name $name | trunc 50 | trimSuffix "-" }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -27,7 +27,7 @@ If release name contains chart name it will be used as a full name.
 Create chart name and version as used by the chart label.
 */}}
 {{- define "appflowy-gotrue.chart" -}}
-{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
+{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 50 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
@@ -52,8 +52,4 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 
 {{- define "appflowy-gotrue.callback" -}}
 {{- printf "%s://%s:%d/gotrue/callback" .Values.global.scheme .Values.global.externalHost (.Values.global.externalPort | int) }}
-{{- end }}
-
-{{- define "appflowy-gotrue.strip-prefix-middleware.fullname" -}}
-{{- printf "%s-strip-prefix" (include "appflowy-gotrue.fullname" .) | trunc 63 | trimSuffix "-" }}
 {{- end }}

@@ -13,7 +13,7 @@ spec:
         - name: {{ include "appflowy-gotrue.fullname" . }}
           port: {{ .Values.service.port }}
       middlewares:
-        - name: {{ include "appflowy-gotrue.strip-prefix-middleware.fullname" . }}
+        - name: {{ include "appflowy-gotrue.fullname" . }}-stripprefix
   {{- with .Values.global.ingress.traefik.tlsSecretName }}
   tls:
     secretName: {{ . }}
