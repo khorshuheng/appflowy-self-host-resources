@@ -68,7 +68,7 @@ spec:
                   name: {{ .Values.global.secret.name }}
                   key: {{ .Values.global.secret.smtp.password.key }}
             - name: APPFLOWY_INDEXER_ENABLED
-              value: {{ if .Values.global.ai.enabled }}{{ .Values.indexer.enabled | quote }}{{ else }}false{{ end }}
+              value: {{ if .Values.global.ai.enabled }}{{ .Values.indexer.enabled | quote }}{{ else }}"false"{{ end }}
             {{- if .Values.global.ai.enabled }}
             - name: APPFLOWY_AI_OPENAI_API_KEY
               valueFrom:
