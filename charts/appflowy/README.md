@@ -1,6 +1,6 @@
 # appflowy
 
-![Version: 0.1.16](https://img.shields.io/badge/Version-0.1.16-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.18](https://img.shields.io/badge/Version-0.1.18-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 AppFlowy Cloud Helm Chart
 
@@ -29,8 +29,6 @@ AppFlowy Cloud Helm Chart
 | global.ingress.traefik.entryPoint | string | `"web"` | The entry point for the Traefik Ingress Controller if the scheme is "http" |
 | global.ingress.traefik.secureEntryPoint | string | `"websecure"` | The entry point for the Traefik Ingress Controller if the scheme is "https" |
 | global.ingress.websocket.timeout | int | `86400` | Define timeout for websocket connection. Currently only used for the Nginx ingress. |
-| global.ingress.cors.allowOrigins | string | `"*"` | Configure the domains which are allowed to access the API server eg. domain for AppFlowy Web |
-| global.ingress.cors.maxAge | string | `"3600"` | CORS max age |
 | global.gotrue.adminEmail | string | `"admin@example.com"` | Gotrue admin user to be created when Gotrue is deployed for the first time |
 | global.database.host | string | `"appflowy-postgres"` | Database host name |
 | global.database.name | string | `"appflowy"` | Database name |
@@ -50,6 +48,9 @@ AppFlowy Cloud Helm Chart
 | global.smtp.email | string | `"user@gmail.com"` | SMTP email |
 | global.smtp.tlsKind | string | `"wrapper"` | SMTP TLS kind. Accepted values: "none", "wrapper", "required", "opportunistic" |
 | global.ai.enabled | bool | `false` | As of now, this chart does not include AppFlowy AI service, so enabling AI is only needed to enable embedding-based search.. |
+| global.appflowyWeb.enabled | bool | `false` | Enable this if AppFlowy Web has been installed |
+| global.appflowyWeb.url | string | `"http://localhost:3000"` | The URL of the AppFlowy Web. This must be accessible from the user's browser |
+| global.appflowyWeb.corsMaxAge | int | `3600` | CORS max age |
 | global.secret.name | string | `"appflowy"` | Name of the secret which stores all the sensitive information required for AppFlowy |
 | global.secret.create | bool | `true` | secret will be created with the values specified in helm values. |
 | global.secret.postgres.adminPassword.key | string | `"postgresAdminPassword"` | Secret key name for the Postgres admin password |
