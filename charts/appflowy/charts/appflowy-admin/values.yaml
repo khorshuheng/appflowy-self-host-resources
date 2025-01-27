@@ -58,6 +58,11 @@ volumeMounts: []
 #   mountPath: "/etc/foo"
 #   readOnly: true
 
+ingress:
+  nginx:
+    # Extra annotations for the Nginx Ingress
+    extraAnnotions: {}
+
 nodeSelector: {}
 
 tolerations: []

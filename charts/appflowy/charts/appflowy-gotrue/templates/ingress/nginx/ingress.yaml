@@ -5,6 +5,9 @@ metadata:
   name: {{ include "appflowy-gotrue.fullname" . }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
+  {{- with .Values.ingress.nginx.extraAnnotations }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   ingressClassName: {{ .Values.global.ingress.nginx.className }}
   rules:

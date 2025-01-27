@@ -45,6 +45,11 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+ingress:
+  nginx:
+    # Extra annotations for the Nginx Ingress
+    extraAnnotations: {}
+
 nodeSelector: {}
 
 tolerations: []

@@ -5,6 +5,9 @@ metadata:
   name: {{ include "appflowy-cloud.fullname" . }}-ws
   annotations:
     nginx.ingress.kubernetes.io/proxy-read-timeout: {{ .Values.global.ingress.websocket.timeout | quote }}
+  {{- with .Values.ingress.nginx.extraAnnotations }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   ingressClassName: {{ .Values.global.ingress.nginx.className }}
   rules:
