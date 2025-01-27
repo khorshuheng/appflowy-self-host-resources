@@ -2,18 +2,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "appflowy-cloud.fullname" . }}-api
+  name: {{ include "appflowy-web.fullname" . }}
 spec:
   ingressClassName: {{ .Values.global.ingress.nginx.className }}
   rules:
     - host: {{ .Values.global.externalHost }}
       http:
         paths:
-          - path: /api
+          - path: /
             pathType: Prefix
             backend:
               service:
-                name: {{ include "appflowy-cloud.fullname" . }}
+                name: {{ include "appflowy-web.fullname" . }}
                 port:
                   number: {{ .Values.service.port }}
 {{- end }}

@@ -1,6 +1,6 @@
 # appflowy
 
-![Version: 0.1.19](https://img.shields.io/badge/Version-0.1.19-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.20](https://img.shields.io/badge/Version-0.1.20-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 AppFlowy Cloud Helm Chart
 
@@ -11,6 +11,7 @@ AppFlowy Cloud Helm Chart
 |  | appflowy-admin | 0.1.0 |
 |  | appflowy-cloud | 0.1.0 |
 |  | appflowy-gotrue | 0.1.0 |
+|  | appflowy-web | 0.1.0 |
 |  | appflowy-worker | 0.1.0 |
 | https://charts.bitnami.com/bitnami | minio | 14.7.14 |
 | https://charts.bitnami.com/bitnami | postgresql | 15.5.24 |
@@ -29,6 +30,8 @@ AppFlowy Cloud Helm Chart
 | global.ingress.traefik.entryPoint | string | `"web"` | The entry point for the Traefik Ingress Controller if the scheme is "http" |
 | global.ingress.traefik.secureEntryPoint | string | `"websecure"` | The entry point for the Traefik Ingress Controller if the scheme is "https" |
 | global.ingress.websocket.timeout | int | `86400` | Define timeout for websocket connection. Currently only used for the Nginx ingress. |
+| global.appflowyCloud.baseUrl | string | `"http://appflowy-cloud"` | The url which can be used withib Kubernetes to reach the AppFlowy Cloud service |
+| global.gotrue.baseUrl | string | `"http://appflowy-gotrue"` | The url which can be used withib Kubernetes to reach the Gotrue service |
 | global.gotrue.adminEmail | string | `"admin@example.com"` | Gotrue admin user to be created when Gotrue is deployed for the first time |
 | global.database.host | string | `"appflowy-postgres"` | Database host name |
 | global.database.name | string | `"appflowy"` | Database name |
@@ -48,9 +51,6 @@ AppFlowy Cloud Helm Chart
 | global.smtp.email | string | `"user@gmail.com"` | SMTP email |
 | global.smtp.tlsKind | string | `"wrapper"` | SMTP TLS kind. Accepted values: "none", "wrapper", "required", "opportunistic" |
 | global.ai.enabled | bool | `false` | As of now, this chart does not include AppFlowy AI service, so enabling AI is only needed to enable embedding-based search.. |
-| global.appflowyWeb.enabled | bool | `false` | Enable this if AppFlowy Web has been installed |
-| global.appflowyWeb.url | string | `"http://localhost:3000"` | The URL of the AppFlowy Web. This must be accessible from the user's browser |
-| global.appflowyWeb.corsMaxAge | int | `3600` | CORS max age |
 | global.secret.name | string | `"appflowy"` | Name of the secret which stores all the sensitive information required for AppFlowy |
 | global.secret.create | bool | `true` | secret will be created with the values specified in helm values. |
 | global.secret.postgres.adminPassword.key | string | `"postgresAdminPassword"` | Secret key name for the Postgres admin password |
@@ -103,6 +103,9 @@ AppFlowy Cloud Helm Chart
 | appflowy-cloud.gotrue.baseUrl | string | `"http://appflowy-gotrue"` |  |
 | appflowy-cloud.accessControl.enabled | bool | `true` |  |
 | appflowy-cloud.ingress.enabled | bool | `true` |  |
+| appflowy-web.enabled | bool | `true` |  |
+| appflowy-web.fullnameOverride | string | `"appflowy-web"` |  |
+| appflowy-web.ingress.enabled | bool | `true` |  |
 | redis.enabled | bool | `true` |  |
 | redis.auth.enabled | bool | `false` |  |
 | redis.architecture | string | `"standalone"` |  |

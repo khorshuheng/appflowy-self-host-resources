@@ -2,20 +2,15 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: {{ include "appflowy-cloud.fullname" . }}
+  name: {{ include "appflowy-web.fullname" . }}
 spec:
   entryPoints:
     - {{ if eq .Values.global.scheme "https" }}{{ .Values.global.ingress.traefik.secureEntryPoint }}{{ else }}{{ .Values.global.ingress.traefik.entryPoint }}{{ end }}
   routes:
-    - match: Host(`{{ .Values.global.externalHost }}`) && PathPrefix(`/api`)
+    - match: Host(`{{ .Values.global.externalHost }}`) && PathPrefix(`/`)
       kind: Rule
       services:
-        - name: {{ include "appflowy-cloud.fullname" . }}
-          port: {{ .Values.service.port }}
-    - match: Host(`{{ .Values.global.externalHost }}`) && PathPrefix(`/ws`)
-      kind: Rule
-      services:
-        - name: {{ include "appflowy-cloud.fullname" . }}
+        - name: {{ include "appflowy-web.fullname" . }}
           port: {{ .Values.service.port }}
   {{- with .Values.global.ingress.traefik.tlsSecretName }}
   tls:

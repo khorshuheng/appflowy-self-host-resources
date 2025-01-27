@@ -21,7 +21,12 @@ global:
     websocket:
       # -- Define timeout for websocket connection. Currently only used for the Nginx ingress.
       timeout: 86400
+  appflowyCloud:
+    # -- The url which can be used withib Kubernetes to reach the AppFlowy Cloud service
+    baseUrl: "http://appflowy-cloud"
   gotrue:
+    # -- The url which can be used withib Kubernetes to reach the Gotrue service
+    baseUrl: "http://appflowy-gotrue"
     # -- Gotrue admin user to be created when Gotrue is deployed for the first time
     adminEmail: "admin@example.com"
   database:
@@ -66,13 +71,6 @@ global:
     # -- Enable AI related functionalities. Require OpenAI API key to be set under secret.
     # -- As of now, this chart does not include AppFlowy AI service, so enabling AI is only needed to enable embedding-based search..
     enabled: false
-  appflowyWeb:
-    # -- Enable this if AppFlowy Web has been installed
-    enabled: false
-    # -- The URL of the AppFlowy Web. This must be accessible from the user's browser
-    url: "http://localhost:3000"
-    # -- CORS max age
-    corsMaxAge: 3600
   secret:
     # -- Name of the secret which stores all the sensitive information required for AppFlowy
     name: appflowy
@@ -194,6 +192,12 @@ appflowy-cloud:
     baseUrl: "http://appflowy-gotrue"
   accessControl:
     enabled: true
+  ingress:
+    enabled: true
+
+appflowy-web:
+  enabled: true
+  fullnameOverride: appflowy-web
   ingress:
     enabled: true
 

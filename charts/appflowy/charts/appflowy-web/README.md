@@ -1,15 +1,15 @@
-# appflowy-admin
+# appflowy-web
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.9.18](https://img.shields.io/badge/AppVersion-0.9.18-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.4](https://img.shields.io/badge/AppVersion-0.1.4-informational?style=flat-square)
 
-AppFlowy Admin Console
+AppFlowy Web
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | replicaCount | int | `1` |  |
-| image.repository | string | `"appflowyinc/admin_frontend"` |  |
+| image.repository | string | `"appflowyinc/appflowy_web"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
@@ -20,8 +20,6 @@ AppFlowy Admin Console
 | service.type | string | `"ClusterIP"` |  |
 | service.port | int | `80` |  |
 | resources | object | `{}` |  |
-| volumes | list | `[]` |  |
-| volumeMounts | list | `[]` |  |
 | nodeSelector | object | `{}` |  |
 | tolerations | list | `[]` |  |
 | affinity | object | `{}` |  |

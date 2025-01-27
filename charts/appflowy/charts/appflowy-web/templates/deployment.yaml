@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "appflowy-admin.fullname" . }}
+  name: {{ include "appflowy-web.fullname" . }}
   labels:
-    {{- include "appflowy-admin.labels" . | nindent 4 }}
+    {{- include "appflowy-web.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      {{- include "appflowy-admin.selectorLabels" . | nindent 6 }}
+      {{- include "appflowy-web.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -16,7 +16,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "appflowy-admin.labels" . | nindent 8 }}
+        {{- include "appflowy-web.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -31,27 +31,17 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: 80
               protocol: TCP
           env:
-            - name: ADMIN_FRONTEND_GOTRUE_URL
-              value: {{ .Values.global.gotrue.baseUrl }}
-            - name: ADMIN_FRONTEND_REDIS_URL
-              value: {{ .Values.global.redis.uri }}
-            - name: ADMIN_FRONTEND_APPFLOWY_CLOUD_URL
-              value: {{ .Values.global.appflowyCloud.baseUrl }}
-            - name: ADMIN_FRONTEND_PATH_PREFIX
-              value: /console
+            - name: AF_BASE_URL
+              value: {{ include "appflowy-web.appflowyCloud.externalUrl" . }}
+            - name: AF_GOTRUE_URL
+              value: {{ include "appflowy-web.gotrue.externalUrl" . }}
+          {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-          {{- with .Values.volumeMounts }}
-          volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- with .Values.volumes }}
-      volumes:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
