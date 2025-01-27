@@ -34,6 +34,7 @@ A Helm chart for Kubernetes
 | readinessProbe.httpGet.port | string | `"http"` |  |
 | volumes | list | `[]` |  |
 | volumeMounts | list | `[]` |  |
+| ingress.nginx.extraAnnotions | object | `{}` |  |
 | nodeSelector | object | `{}` |  |
 | tolerations | list | `[]` |  |
 | affinity | object | `{}` |  |

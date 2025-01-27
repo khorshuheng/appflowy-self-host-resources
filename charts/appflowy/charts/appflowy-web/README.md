@@ -20,6 +20,7 @@ AppFlowy Web
 | service.type | string | `"ClusterIP"` |  |
 | service.port | int | `80` |  |
 | resources | object | `{}` |  |
+| ingress.nginx.extraAnnotations | object | `{}` |  |
 | nodeSelector | object | `{}` |  |
 | tolerations | list | `[]` |  |
 | affinity | object | `{}` |  |

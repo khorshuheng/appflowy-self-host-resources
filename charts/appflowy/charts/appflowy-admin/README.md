@@ -22,6 +22,7 @@ AppFlowy Admin Console
 | resources | object | `{}` |  |
 | volumes | list | `[]` |  |
 | volumeMounts | list | `[]` |  |
+| ingress.nginx.extraAnnotions | object | `{}` |  |
 | nodeSelector | object | `{}` |  |
 | tolerations | list | `[]` |  |
 | affinity | object | `{}` |  |
