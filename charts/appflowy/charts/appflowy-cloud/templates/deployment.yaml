@@ -110,7 +110,7 @@ spec:
               value: {{ .Values.global.appflowyWeb.url }}
             {{- end }}
             {{- if .Values.global.ai.enabled }}
-            - name: APPFLOWY_AI_OPENAI_API_KEY
+            - name: AI_OPENAI_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}

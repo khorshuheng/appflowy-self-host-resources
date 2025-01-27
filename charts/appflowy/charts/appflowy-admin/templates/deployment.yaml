@@ -40,6 +40,8 @@ spec:
               value: {{ .Values.global.redis.uri }}
             - name: ADMIN_FRONTEND_APPFLOWY_CLOUD_URL
               value: {{ .Values.appflowyCloud.baseUrl }}
+            - name: ADMIN_FRONTEND_PATH_PREFIX
+              value: /console
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}

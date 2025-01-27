@@ -9,7 +9,7 @@ spec:
     - host: {{ .Values.global.externalHost }}
       http:
         paths:
-          - path: /
+          - path: /console
             pathType: Prefix
             backend:
               service:

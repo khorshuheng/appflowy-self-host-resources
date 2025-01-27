@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - {{ if eq .Values.global.scheme "https" }}{{ .Values.global.ingress.traefik.secureEntryPoint }}{{ else }}{{ .Values.global.ingress.traefik.entryPoint }}{{ end }}
   routes:
-    - match: Host(`{{ .Values.global.externalHost }}`)
+    - match: Host(`{{ .Values.global.externalHost }}`) && PathPrefix(`/console`)
       kind: Rule
       services:
         - name: {{ include "appflowy-admin.fullname" . }}
