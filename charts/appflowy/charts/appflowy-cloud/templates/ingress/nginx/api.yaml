@@ -21,3 +21,6 @@ spec:
                 port:
                   number: {{ .Values.service.port }}
 {{- end }}
+  tls:
+    - hosts: {{ .Values.global.externalHost }}
+      secretName: {{ .Values.global.ingress.nginx.tlsSecretName }}
