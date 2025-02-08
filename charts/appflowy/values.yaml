@@ -11,8 +11,9 @@ global:
       enabled: true
       # -- The class name of the NGINX Ingress Controller ingress
       className: nginx
-      # -- Nginx TLS secret name
-      tlsSecretName: ""
+      # -- Nginx TLS secret name if using https
+      tls:
+        secretName: ""
     traefik:
       # -- Enable to create IngressRoute for Traefik Ingress Controller
       enabled: false
