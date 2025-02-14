@@ -20,4 +20,10 @@ spec:
                 name: {{ include "appflowy-web.fullname" . }}
                 port:
                   number: {{ .Values.service.port }}
+  {{- if .Values.global.ingress.nginx.tls.enabled }}
+  tls:
+    - hosts:
+        - {{ .Values.global.externalHost }}
+      secretName: {{ .Values.global.ingress.nginx.tls.secretName }}
+  {{- end }}
 {{- end }}

@@ -1,6 +1,6 @@
 # appflowy
 
-![Version: 0.1.21](https://img.shields.io/badge/Version-0.1.21-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.22](https://img.shields.io/badge/Version-0.1.22-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 AppFlowy Cloud Helm Chart
 
@@ -26,6 +26,8 @@ AppFlowy Cloud Helm Chart
 | global.externalPort | int | `80` | The port number which can be used for the AppFlowy client to reach the API server |
 | global.ingress.nginx.enabled | bool | `true` | Enable to create ingress for NGINX Ingress Controller |
 | global.ingress.nginx.className | string | `"nginx"` | The class name of the NGINX Ingress Controller ingress |
+| global.ingress.nginx.tls.enabled | bool | `false` | Add TLS to the NGINX Ingress |
+| global.ingress.nginx.tls.secretName | string | `""` | Nginx TLS secret name if using https |
 | global.ingress.traefik.enabled | bool | `false` | Enable to create IngressRoute for Traefik Ingress Controller |
 | global.ingress.traefik.entryPoint | string | `"web"` | The entry point for the Traefik Ingress Controller if the scheme is "http" |
 | global.ingress.traefik.secureEntryPoint | string | `"websecure"` | The entry point for the Traefik Ingress Controller if the scheme is "https" |
