@@ -74,8 +74,11 @@ global:
     tlsKind: "wrapper"
   ai:
     # -- Enable AI related functionalities. Require OpenAI API key to be set under secret.
-    # -- As of now, this chart does not include AppFlowy AI service, so enabling AI is only needed to enable embedding-based search..
     enabled: false
+    # -- Hostname that appflowy-cloud will use when connecting to the Appflowy AI service
+    host: appflowy-ai
+    # -- Port number that appflowy-cloud will use when connecting to the Appflowy AI service
+    port: 5001
   secret:
     # -- Name of the secret which stores all the sensitive information required for AppFlowy
     name: appflowy
@@ -106,6 +109,10 @@ global:
         databaseUrl:
           # -- Database url, as inferred from the postgres credentials. Takes the form of: postgres://<appflowy user>:<password>@<host>:<port>/<database name>
           key: appflowyDatabaseUrl
+      ai:
+        databaseUrl:
+          # -- Database url, as inferred from the postgres credentials. Takes the form of: postgresql+psycopg://<appflowy user>:<password>@<host>:<port>/<database name>
+          key: aiDatabaseUrl
     gotrue:
       adminPassword:
         # -- Secret key name for the Gotrue admin password
@@ -203,6 +210,11 @@ appflowy-cloud:
 appflowy-web:
   enabled: true
   fullnameOverride: appflowy-web
+  ingress:
+    enabled: true
+
+appflowy-ai:
+  fullnameOverride: appflowy-ai
   ingress:
     enabled: true
 

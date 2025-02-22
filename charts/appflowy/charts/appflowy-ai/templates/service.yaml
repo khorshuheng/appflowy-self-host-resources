@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "appflowy-ai.fullname" . }}
+  labels: {{- include "appflowy-ai.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.global.ai.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector: {{- include "appflowy-ai.selectorLabels" . | nindent 4 }}
