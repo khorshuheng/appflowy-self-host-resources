@@ -26,5 +26,5 @@ dependencies:
 - name: appflowy-ai
   repository: ""
   version: 0.1.0
-digest: sha256:70e632e56bc41c6c95d5b9987fb678a9eb3f9ea7a2ef563b9406b202a3b2657d
-generated: "2025-02-03T23:07:28.664458474+01:00"
+digest: sha256:dc35ddc0e3d7455e1449541972ab618eeae6677c419a898b04bfd8aeb4750e78
+generated: "2025-02-22T23:11:09.944025199+08:00"
