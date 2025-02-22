@@ -61,3 +61,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- define "appflowy.appflowyDatabase.url" -}}
 {{- printf "postgres://%s:%s@%s:%d/%s"  .Values.global.database.username .Values.global.secret.postgres.appflowy.postgresPassword.value .Values.global.database.host (.Values.global.database.port | int) .Values.global.database.name }}
 {{- end }}
+
+{{- define "appflowy.aiDatabase.url" -}}
+{{- printf "postgresql+psycopg://%s:%s@%s:%d/%s"  .Values.global.database.username .Values.global.secret.postgres.appflowy.postgresPassword.value .Values.global.database.host (.Values.global.database.port | int) .Values.global.database.name }}
+{{- end }}

@@ -113,6 +113,10 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
                   key: {{ .Values.global.secret.ai.openAIAPIKey.key }}
+            - name: AI_SERVER_HOST
+              value: {{ .Values.global.ai.host | quote }}
+            - name: AI_SERVER_PORT
+              value: {{ .Values.global.ai.port | quote }}
             {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
