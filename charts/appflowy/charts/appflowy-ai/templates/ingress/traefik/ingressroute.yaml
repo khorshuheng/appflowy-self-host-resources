@@ -12,11 +12,6 @@ spec:
       services:
         - name: {{ include "appflowy-ai.fullname" . }}
           port: {{ .Values.service.port }}
-    - match: Host(`{{ .Values.global.externalHost }}`) && PathPrefix(`/ws`)
-      kind: Rule
-      services:
-        - name: {{ include "appflowy-ai.fullname" . }}
-          port: {{ .Values.global.ai.port }}
   {{- with .Values.global.ingress.traefik.tlsSecretName }}
   tls:
     secretName: {{ . }}

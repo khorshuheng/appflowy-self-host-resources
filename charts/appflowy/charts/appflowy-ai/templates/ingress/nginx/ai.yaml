@@ -19,7 +19,7 @@ spec:
               service:
                 name: {{ include "appflowy-ai.fullname" . }}
                 port:
-                  number: {{ .Values.global.ai.port }}
+                  number: {{ .Values.service.port }}
   {{- if .Values.global.ingress.nginx.tls.enabled }}
   tls:
     - hosts:

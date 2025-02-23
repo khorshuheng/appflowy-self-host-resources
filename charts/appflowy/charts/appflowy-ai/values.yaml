@@ -16,9 +16,9 @@ fullnameOverride: ""
 podAnnotations: {}
 podLabels: {}
 
-# Service port configured via Values.global.ai.port
 service:
   type: ClusterIP
+  port: 5001
 
 resources:
   {}

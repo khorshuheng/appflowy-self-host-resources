@@ -214,6 +214,7 @@ appflowy-web:
     enabled: true
 
 appflowy-ai:
+  enabled: true
   fullnameOverride: appflowy-ai
   ingress:
     enabled: true
