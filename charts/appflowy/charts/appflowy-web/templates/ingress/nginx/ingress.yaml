@@ -3,7 +3,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ include "appflowy-web.fullname" . }}
-  {{- with .Values.ingress.nginx.extraAnnotations }}
+  {{- with .Values.global.ingress.nginx.extraAnnotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
