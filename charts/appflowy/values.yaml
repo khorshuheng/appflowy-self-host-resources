@@ -178,8 +178,10 @@ postgresql:
   auth:
     username: appflowy
     database: appflowy
-    password: password
-    postgresPassword: password
+    existingSecret: "appflowy"
+    secretKey:
+      adminPasswordKey: postgresAdminPassword
+      userPasswordKey: postgresPassword
   primary:
     persistence:
       enabled: true
