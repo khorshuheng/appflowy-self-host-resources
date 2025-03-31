@@ -120,9 +120,9 @@ spec:
               value: {{ include "appflowy-gotrue.callback" . }}
             {{- end }}
             {{- if .Values.oauth.saml.enabled }}
-            - name: GOTRUE_EXTERNAL_SAML_ENABLED
+            - name: GOTRUE_SAML_ENABLED
               value: {{ .Values.oauth.saml.enabled | quote }}
-            - name: GOTRUE_EXTERNAL_SAML_PRIVATE_KEY
+            - name: GOTRUE_SAML_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.global.secret.name }}
