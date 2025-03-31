@@ -119,6 +119,15 @@ spec:
             - name: GOTRUE_EXTERNAL_APPLE_REDIRECT_URI
               value: {{ include "appflowy-gotrue.callback" . }}
             {{- end }}
+            {{- if .Values.oauth.saml.enabled }}
+            - name: GOTRUE_EXTERNAL_SAML_ENABLED
+              value: {{ .Values.oauth.saml.enabled | quote }}
+            - name: GOTRUE_EXTERNAL_SAML_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.global.secret.name }}
+                  key: {{ .Values.global.secret.oauth.samlPrivateKey.key }}
+            {{- end }}
             - name: GOTRUE_SMTP_HOST
               value: {{ .Values.global.smtp.host }}
             - name: GOTRUE_SMTP_PORT

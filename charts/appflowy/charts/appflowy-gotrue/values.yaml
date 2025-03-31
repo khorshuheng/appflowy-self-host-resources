@@ -37,6 +37,8 @@ oauth:
   apple:
     enabled: false
     clientId: ""
+  saml:
+    enabled: false
 
 # -- If set to true, admin will need to manually create user accounts
 disableSignUp: false

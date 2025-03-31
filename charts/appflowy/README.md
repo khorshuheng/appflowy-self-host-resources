@@ -78,6 +78,8 @@ AppFlowy Cloud Helm Chart
 | global.secret.oauth.githubClientSecret.value | string | `""` | Secret value for the Github OAuth client secret |
 | global.secret.oauth.appleClientSecret.key | string | `"oauthAppleClientSecret"` | Secret key name for the Apple OAuth client secret |
 | global.secret.oauth.appleClientSecret.value | string | `""` | Secret value for the Apple OAuth client secret |
+| global.secret.oauth.samlPrivateKey.key | string | `"oauthSAMLPrivateKey"` | Secret key name for the SAML private key |
+| global.secret.oauth.samlPrivateKey.value | string | `""` | Secret value for the SAML private key |
 | global.secret.jwt.secret.key | string | `"jwtSecret"` | Secret key name for the JWT secret |
 | global.secret.jwt.secret.value | string | `"hello456"` | Secret value for the JWT secret |
 | global.secret.smtp.password.key | string | `"smtpPassword"` | Secret key name for the SMTP password |

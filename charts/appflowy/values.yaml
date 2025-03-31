@@ -142,6 +142,11 @@ global:
         key: oauthAppleClientSecret
         # -- Secret value for the Apple OAuth client secret
         value: ""
+      samlPrivateKey:
+        # -- Secret key name for the SAML private key
+        key: oauthSAMLPrivateKey
+        # -- Secret value for the SAML private key
+        value: ""
     jwt:
       secret:
         # -- Secret key name for the JWT secret
