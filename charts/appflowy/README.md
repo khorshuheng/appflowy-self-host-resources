@@ -1,6 +1,6 @@
 # appflowy
 
-![Version: 0.1.26](https://img.shields.io/badge/Version-0.1.26-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.27](https://img.shields.io/badge/Version-0.1.27-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 AppFlowy Cloud Helm Chart
 
@@ -97,8 +97,8 @@ AppFlowy Cloud Helm Chart
 | postgresql.auth.username | string | `"appflowy"` |  |
 | postgresql.auth.database | string | `"appflowy"` |  |
 | postgresql.auth.existingSecret | string | `"appflowy"` |  |
-| postgresql.auth.secretKey.adminPasswordKey | string | `"postgresAdminPassword"` |  |
-| postgresql.auth.secretKey.userPasswordKey | string | `"postgresPassword"` |  |
+| postgresql.auth.secretKeys.adminPasswordKey | string | `"postgresAdminPassword"` |  |
+| postgresql.auth.secretKeys.userPasswordKey | string | `"postgresPassword"` |  |
 | postgresql.primary.persistence.enabled | bool | `true` |  |
 | postgresql.primary.persistence.size | string | `"1Gi"` |  |
 | appflowy-admin.enabled | bool | `true` |  |
