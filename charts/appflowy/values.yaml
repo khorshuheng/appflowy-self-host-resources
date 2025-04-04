@@ -186,7 +186,7 @@ postgresql:
     username: appflowy
     database: appflowy
     existingSecret: "appflowy"
-    secretKey:
+    secretKeys:
       adminPasswordKey: postgresAdminPassword
       userPasswordKey: postgresPassword
   primary:
