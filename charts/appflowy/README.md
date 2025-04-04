@@ -1,6 +1,6 @@
 # appflowy
 
-![Version: 0.1.27](https://img.shields.io/badge/Version-0.1.27-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.28](https://img.shields.io/badge/Version-0.1.28-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 AppFlowy Cloud Helm Chart
 
@@ -106,7 +106,8 @@ AppFlowy Cloud Helm Chart
 | appflowy-gotrue.enabled | bool | `true` |  |
 | appflowy-gotrue.fullnameOverride | string | `"appflowy-gotrue"` |  |
 | appflowy-gotrue.mailer.enabled | bool | `true` |  |
-| appflowy-gotrue.mailer.autoConfirm | bool | `false` |  |
+| appflowy-gotrue.mailer.autoConfirm | bool | `false` | Set true if you want the users to sign up without confirmation email |
+| appflowy-gotrue.mailer.adminEmail | string | `"user@gmail.com"` | Email address for gotrue email links |
 | appflowy-gotrue.extraEnv | list | `[]` |  |
 | appflowy-cloud.enabled | bool | `true` |  |
 | appflowy-cloud.fullnameOverride | string | `"appflowy-cloud"` |  |

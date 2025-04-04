@@ -203,7 +203,10 @@ appflowy-gotrue:
   fullnameOverride: appflowy-gotrue
   mailer:
     enabled: true
+    # -- Set true if you want the users to sign up without confirmation email
     autoConfirm: false
+    # -- Email address for gotrue email links
+    adminEmail: user@gmail.com
   extraEnv: []
 
 appflowy-cloud:
