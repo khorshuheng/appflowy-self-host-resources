@@ -14,6 +14,9 @@ spec:
           port: {{ .Values.service.port }}
       middlewares:
         - name: {{ include "appflowy-gotrue.fullname" . }}-stripprefix
+        {{- with .Values.global.ingress.traefik.extraMiddlewares }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
   {{- with .Values.global.ingress.traefik.tlsSecretName }}
   tls:
     secretName: {{ . }}

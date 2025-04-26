@@ -12,11 +12,19 @@ spec:
       services:
         - name: {{ include "appflowy-cloud.fullname" . }}
           port: {{ .Values.service.port }}
+      {{- with .Values.global.ingress.traefik.extraMiddlewares }}
+      middlewares:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
     - match: Host(`{{ .Values.global.externalHost }}`) && PathPrefix(`/ws`)
       kind: Rule
       services:
         - name: {{ include "appflowy-cloud.fullname" . }}
           port: {{ .Values.service.port }}
+      {{- with .Values.global.ingress.traefik.extraMiddlewares }}
+      middlewares:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
   {{- with .Values.global.ingress.traefik.tlsSecretName }}
   tls:
     secretName: {{ . }}

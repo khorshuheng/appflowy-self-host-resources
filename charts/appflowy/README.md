@@ -1,6 +1,6 @@
 # appflowy
 
-![Version: 0.1.28](https://img.shields.io/badge/Version-0.1.28-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.29](https://img.shields.io/badge/Version-0.1.29-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 AppFlowy Cloud Helm Chart
 
@@ -33,6 +33,7 @@ AppFlowy Cloud Helm Chart
 | global.ingress.traefik.enabled | bool | `false` | Enable to create IngressRoute for Traefik Ingress Controller |
 | global.ingress.traefik.entryPoint | string | `"web"` | The entry point for the Traefik Ingress Controller if the scheme is "http" |
 | global.ingress.traefik.secureEntryPoint | string | `"websecure"` | The entry point for the Traefik Ingress Controller if the scheme is "https" |
+| global.ingress.traefik.extraMiddlewares | list | `[]` | Traefik extra middlewares extraMiddlewares: - name: "example-middleware"   namespace: "default" |
 | global.ingress.websocket.timeout | int | `86400` | Define timeout for websocket connection. Currently only used for the Nginx ingress. |
 | global.appflowyCloud.baseUrl | string | `"http://appflowy-cloud"` | The url which can be used withib Kubernetes to reach the AppFlowy Cloud service |
 | global.gotrue.baseUrl | string | `"http://appflowy-gotrue"` | The url which can be used withib Kubernetes to reach the Gotrue service |

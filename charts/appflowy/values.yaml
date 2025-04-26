@@ -25,6 +25,11 @@ global:
       entryPoint: web
       # -- The entry point for the Traefik Ingress Controller if the scheme is "https"
       secureEntryPoint: websecure
+      # -- Traefik extra middlewares
+      # extraMiddlewares:
+      # - name: "example-middleware"
+      #   namespace: "default"
+      extraMiddlewares: []
     websocket:
       # -- Define timeout for websocket connection. Currently only used for the Nginx ingress.
       timeout: 86400
