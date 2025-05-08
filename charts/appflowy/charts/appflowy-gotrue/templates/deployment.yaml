@@ -36,6 +36,8 @@ spec:
           env:
             - name: PORT
               value: "9999"
+            - name: GOTRUE_LOG_LEVEL
+              value: "debug"
             - name: API_EXTERNAL_URL
               value: {{ printf "%s://%s:%d/gotrue" .Values.global.scheme .Values.global.externalHost (.Values.global.externalPort | int) }}
             - name: GOTRUE_DB_DRIVER

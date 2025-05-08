@@ -258,3 +258,13 @@ minio:
     requests:
       cpu: 10m
       memory: 256Mi
+
+setupJob:
+  # -- Required for enabling pgvector for database. This is optional if the postgres user for appflowy is already a superadmin, or the extension is already enabled.
+  enabled: true
+  postgresConnectTimeout: 60
+  backoffLimit: 5
+  resources: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}

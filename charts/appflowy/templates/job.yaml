@@ -1,0 +1,46 @@
+{{- if .Values.setupJob.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "appflowy.job.fullname" . }}
+  labels:
+    {{- include "appflowy.labels" . | nindent 4 }}
+spec:
+  backoffLimit: {{ .Values.setupJob.backoffLimit }}
+  template:
+    spec:
+      containers:
+        - name: db-setup
+          image: postgres:16.4
+          command: ["/bin/bash"]
+          args: ["/scripts/setup.sh"]
+          volumeMounts:
+            - name: setup-scripts
+              mountPath: /scripts
+          env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name:
+                    {{ .Values.global.secret.name }}
+                  key: {{ .Values.global.secret.postgres.adminPassword.key }}
+          resources:
+            {{- toYaml .Values.setupJob.resources | nindent 12 }}
+      restartPolicy: Never
+      volumes:
+        - name: setup-scripts
+          configMap:
+            name: {{ include "appflowy.job.fullname" . }}
+      {{- with .Values.setupJob.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.setupJob.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.setupJob.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}
