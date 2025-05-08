@@ -54,13 +54,6 @@ spec:
                   key: {{ .Values.global.secret.jwt.secret.key }}
             - name: APPFLOWY_GOTRUE_BASE_URL
               value: {{ .Values.global.gotrue.baseUrl }}
-            - name: APPFLOWY_GOTRUE_ADMIN_EMAIL
-              value: {{ .Values.global.gotrue.adminEmail }}
-            - name: APPFLOWY_GOTRUE_ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.global.secret.name }}
-                  key: {{ .Values.global.secret.gotrue.adminPassword.key }}
             - name: APPFLOWY_S3_CREATE_BUCKET
               value: {{ .Values.global.s3.createBucket | quote }}
             - name: APPFLOWY_S3_USE_MINIO

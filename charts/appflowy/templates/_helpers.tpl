@@ -50,12 +50,8 @@ app.kubernetes.io/name: {{ include "appflowy.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
-{{- define "appflowy.job.fullname" -}}
-{{- printf "%s-db-setup" (include "appflowy.fullname" .) | trunc 63 | trimSuffix "-" }}
-{{- end }}
-
 {{- define "appflowy.gotrueDatabase.url" -}}
-{{- printf "postgres://supabase_auth_admin:%s@%s:%d/%s"  .Values.global.secret.postgres.gotrue.postgresPassword.value .Values.global.database.host (.Values.global.database.port | int) .Values.global.database.name }}
+{{- printf "postgres://%s:%s@%s:%d/%s?search_path=auth"  .Values.global.database.username .Values.global.secret.postgres.gotrue.postgresPassword.value .Values.global.database.host (.Values.global.database.port | int) .Values.global.database.name }}
 {{- end }}
 
 {{- define "appflowy.appflowyDatabase.url" -}}

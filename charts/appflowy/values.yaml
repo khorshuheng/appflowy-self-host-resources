@@ -50,7 +50,7 @@ global:
     port: 5432
     # -- Postgres user, to be used by the AppFlowy API server
     username: appflowy
-    # -- Postgres admin user, to be used by the setup job.
+    # -- Postgres admin user
     adminUsername: postgres
   redis:
     # -- Redis URI
@@ -105,7 +105,7 @@ global:
           # -- Secret value for the password of the gotrue postgres user (supabase_admin_auth).
           value: password
         databaseUrl:
-          # -- Database url, as inferred from the postgres credentials. Takes the form of: postgres://supabase_auth_admin:<password>@<host>:<port>/<database name>
+          # -- Database url, as inferred from the postgres credentials. Takes the form of: postgres://<user>:<password>@<host>:<port>/<database name>?search_path=auth
           key: gotrueDatabaseUrl
       appflowy:
         postgresPassword:
@@ -258,12 +258,3 @@ minio:
     requests:
       cpu: 10m
       memory: 256Mi
-
-setupJob:
-  enabled: true
-  postgresConnectTimeout: 60
-  backoffLimit: 5
-  resources: {}
-  nodeSelector: {}
-  tolerations: []
-  affinity: {}
